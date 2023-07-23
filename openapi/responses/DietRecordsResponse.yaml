@@ -1,0 +1,17 @@
+title: DietRecordsResponse
+description: user diet records response
+type: array
+items:
+  type: object
+  properties:
+    photo:
+      type: string
+    type:
+      type: string
+    datetime:
+      type: string
+  example:
+    photo: 'path-to-the-photo'
+    type: 'lunch'
+    datetime: '2023-03-03-11:11:11'
+

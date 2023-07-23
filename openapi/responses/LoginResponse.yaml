@@ -1,0 +1,11 @@
+title: LoginResponse
+description: login response
+type: object
+properties:
+  id:
+    type: string
+  accessToken:
+    type: string
+example:
+  id: random-string
+  accessToken: token文字列

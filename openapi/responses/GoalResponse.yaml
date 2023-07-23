@@ -1,0 +1,8 @@
+title: GoalResponse
+description: user goal response
+type: object
+properties:
+  value:
+    type: number
+example:
+  value: 55

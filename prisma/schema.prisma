@@ -1,0 +1,132 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  userId          String           @id @map("user_id") @db.VarChar(256)
+  account         Account?
+  name            String           @db.VarChar(256)
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @default(now()) @updatedAt @map("updated_at")
+  goals           Goal[]
+  bodyRecords     BodyRecord[]
+  exerciseRecords ExerciseRecord[]
+  diaries         Diary[]
+  diets           Diet[]
+
+  @@map("Users")
+}
+
+model Account {
+  user      User     @relation(fields: [userId], references: [userId])
+  userId    String   @id @map("user_id")
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("Accounts")
+}
+
+model Exercise {
+  id              Int              @id @default(autoincrement())
+  name            String           @unique
+  calorie         Int
+  exerciseRecords ExerciseRecord[]
+
+  @@map("Exercises")
+}
+
+model Goal {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [userId])
+  userId    String   @map("user_id")
+  value     Float
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("Goals")
+}
+
+model BodyRecord {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [userId])
+  userId    String   @map("user_id")
+  dateTime  DateTime @map("date_time")
+  value     Float
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("BodyRecords")
+}
+
+model ExerciseRecord {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [userId])
+  userId     String   @map("user_id")
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  exerciseId Int      @map("exercise_id")
+  dateTime   DateTime @map("date_time")
+  time       Int
+
+  @@map("ExirciseRecords")
+}
+
+model Diary {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [userId])
+  userId    String   @map("user_id")
+  dateTime  DateTime @map("date_time")
+  contents  String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("Diaries")
+}
+
+enum DietType {
+  MORNING
+  LUNCH
+  DINNER
+  SNACK
+}
+
+model Diet {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [userId])
+  userId    String   @map("user_id")
+  photo     String
+  type      DietType
+  dateTime  DateTime @map("date_time")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("Diets")
+}
+
+model Column {
+  id         Int         @id @default(autoincrement())
+  title      String
+  contents   String      @db.Text
+  createdAt  DateTime    @default(now()) @map("created_at")
+  updatedAt  DateTime    @default(now()) @updatedAt @map("updated_at")
+  columnTags ColumnTag[]
+
+  @@map("Columns")
+}
+
+model ColumnTag {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  columns   Column[]
+
+  @@map("ColumnTags")
+}

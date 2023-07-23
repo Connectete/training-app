@@ -1,0 +1,40 @@
+name: build-test-actions
+run-name: ${{ github.actor }} is checking build and test
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - app/**
+      - .github/workflows/build-test-actions.yml
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup DB
+        run: docker-compose up --build -d
+        working-directory: db
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # LTSバージョンをダウンロード（LTS：18.15.0 *2022/04/12時点）
+          cache: 'npm'
+          cache-dependency-path: app/package-lock.json
+
+      - name: Run build and test
+        run: |
+          cp ./.env.sample ./.env
+          ls
+          npm ci
+          npm run prisma:migrate:deploy
+          npm run prisma:seed
+          npm run prisma:generate
+          npm run build
+          npm run test:e2e
+        working-directory: app

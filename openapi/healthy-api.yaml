@@ -1,0 +1,350 @@
+openapi: 3.1.0
+info:
+  title: healthy-api
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3001'
+    description: local server
+paths:
+  /:
+    get:
+      tags:
+        - app
+      summary: ping
+      responses:
+        '200':
+          $ref: '#/components/responses/GetPingResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: login
+      responses:
+        '200':
+          description: return loginUser and accessToken
+          $ref: '#/components/responses/LoginUserResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestErrorResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/LoginRequestBody'
+  '/users/{userId}/goal':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      tags:
+        - healthy
+      summary: get users goal
+      description: get users goal
+      responses:
+        '200':
+          description: return goal weight value
+          $ref: '#/components/responses/GoalResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+      operationId: get-users-userId-goal
+  '/users/{userId}/body_records':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+      - $ref: '#/components/parameters/FromParameter'
+      - $ref: '#/components/parameters/ToParameter'
+    get:
+      tags:
+        - healthy
+      summary: get users body records
+      description: get users body records
+      responses:
+        '200':
+          description: return body records
+          $ref: '#/components/responses/BodyRecordsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+      operationId: get-users-userId-body_records
+  '/users/{userId}/diet_records':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+      - $ref: '#/components/parameters/LimitParameter'
+      - $ref: '#/components/parameters/OffsetParameter'
+    get:
+      tags:
+        - healthy
+      summary: get users diet records
+      description: get users diet records
+      responses:
+        '200':
+          description: return diet records
+          $ref: '#/components/responses/DietRecordsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+      operationId: get-users-userId-diet_records
+  '/users/{userId}/exercise_records':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+      - $ref: '#/components/parameters/LimitParameter'
+      - $ref: '#/components/parameters/OffsetParameter'
+    get:
+      tags:
+        - healthy
+      summary: get users exercise records
+      description: get users exercise records
+      responses:
+        '200':
+          description: return exercise records
+          $ref: '#/components/responses/ExerciseRecordsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+      operationId: get-users-userId-exercise_records
+  '/users/{userId}/diaries':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+      - $ref: '#/components/parameters/LimitParameter'
+      - $ref: '#/components/parameters/OffsetParameter'
+    get:
+      tags:
+        - healthy
+      summary: get users diaries
+      description: get users diaries
+      responses:
+        '200':
+          description: return diaries
+          $ref: '#/components/responses/DiariesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestErrorResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+      operationId: get-users-userId-diaries
+  /columns:
+    get:
+      tags:
+        - healthy
+      summary: get columns
+      description: get columns
+      responses:
+        '200':
+          description: return columns
+          $ref: '#/components/responses/ColumnsResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+      operationId: get-columns
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  requestBodies:
+    LoginRequestBody:
+      description: post userId password
+      content:
+        application/json:
+          schema:
+            $ref: ./requests/LoginRequest.yaml
+  parameters:
+    LimitParameter:
+      name: limit
+      in: query
+      description: Limit one page.
+      schema:
+        type: integer
+        default: 20
+      example: 20
+    OffsetParameter:
+      name: offset
+      in: query
+      description: Offset page.
+      schema:
+        type: integer
+        default: 0
+      example: 100
+    FromParameter:
+      name: from
+      in: query
+      description: from datetime.
+      schema:
+        type: string
+      example: 2023-03-03-00:00:00
+    ToParameter:
+      name: to
+      in: query
+      description: to datetime.
+      schema:
+        type: string
+      example: 2023-04-02-23:59:59
+  responses:
+    BadRequestErrorResponse:
+      description: Bad request error.
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/Error.yaml
+          examples:
+            default:
+              value:
+                code: BadRequest
+                message: Multiple invalid values in the request body.
+                target: RequestBody
+                details:
+                  code: NullValue
+                  target: name
+                  message: field name must not be null.
+    UnauthorizedErrorResponse:
+      description: The client doesn’t have correct authentication.
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/Error.yaml
+          examples:
+            default:
+              value:
+                code: Unauthorized
+                message: Authorization has failed.
+    ForbiddenErrorResponse:
+      description: The server is refusing to respond.
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/Error.yaml
+          examples:
+            default:
+              value:
+                code: Forbidden
+                message: Access permission error
+    NotFoundErrorResponse:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/Error.yaml
+          examples:
+            default:
+              value:
+                code: NotFound
+                message: The resource has not found
+    InternalServerErrorResponse:
+      description: An internal error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/Error.yaml
+          examples:
+            default:
+              value:
+                code: UnexpectedError
+                message: An unexpected error happened
+    NoContentSuccessResponse:
+      description: No content.
+    GetPingResponse:
+      description: Success to ping.
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/Ping.yaml
+    LoginUserResponse:
+      description: Success to login.
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/LoginResponse.yaml
+    GoalResponse:
+      description: get user goal
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/GoalResponse.yaml
+    BodyRecordsResponse:
+      description: body record response
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/BodyRecordsResponse.yaml
+    DietRecordsResponse:
+      description: diet record response
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/DietRecordsResponse.yaml
+    ExerciseRecordsResponse:
+      description: exercise record response
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/ExerciseRecordsResponse.yaml
+    DiariesResponse:
+      description: diaries record response
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/DiariesResponse.yaml
+    ColumnsResponse:
+      description: column response
+      content:
+        application/json:
+          schema:
+            $ref: ./responses/ColumnsResponse.yaml
+security:
+  - bearerAuth: []

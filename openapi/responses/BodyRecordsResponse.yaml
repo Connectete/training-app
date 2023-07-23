@@ -1,0 +1,13 @@
+title: BodyRecordsResponse
+description: user body records response
+type: array
+items:
+  type: object
+  properties:
+    date:
+      type: string
+    value:
+      type: number
+  example:
+    date: 2023-01-01
+    value: 60.0

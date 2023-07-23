@@ -1,0 +1,10 @@
+title: Error
+description: error
+type: object
+properties:
+  code:
+    description: One of a server-defined set of error codes.
+    type: string
+  message:
+    description: error message
+    type: string

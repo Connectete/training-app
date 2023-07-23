@@ -1,0 +1,23 @@
+title: ColumnsResponse
+description: columns response
+type: array
+items:
+  type: object
+  properties:
+    title:
+      type: string
+    created_at:
+      type: string
+    column_tags:
+      type: array
+      items:
+        type: object
+        properties:
+          column_tag:
+            type: string
+  example:
+    title: '記事タイトル'
+    created_at: '2023-03-03-11:11:11'
+    column_tags:
+      - column_tag: '魚DHA'
+      - column_tag: 'ダイエット'

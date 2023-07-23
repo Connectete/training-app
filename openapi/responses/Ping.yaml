@@ -1,0 +1,7 @@
+title: Ping
+description: return 'Hello World!'
+content:
+  application/json:
+    schema:
+      type: string
+      example: Hello World!

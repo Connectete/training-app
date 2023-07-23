@@ -1,0 +1,16 @@
+title: LoginRequest
+description: login request body
+type: object
+required:
+  - userId
+  - password
+properties:
+  userId:
+    type: string
+    format: userId
+  password:
+    type: string
+examples:
+  - userId: random-string
+    password: crypted-string
+
