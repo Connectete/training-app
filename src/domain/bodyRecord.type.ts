@@ -10,3 +10,10 @@ export type updateBodyRecord = {
   date: Date;
   value: number;
 };
+
+
+export type CreateBodyRecod = {
+    userId: string;
+    value: number;
+    dateTime: string | Date;
+};
