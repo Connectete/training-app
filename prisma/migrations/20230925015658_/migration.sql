@@ -64,7 +64,11 @@ CREATE TABLE "ExerciseRecords" (
 -- CreateTable
 CREATE TABLE "Diaries" (
     "user_id" TEXT NOT NULL,
+<<<<<<<< HEAD:prisma/migrations/20230925015658_/migration.sql
     "date" DATE NOT NULL,
+========
+    "date_time" TIMESTAMP(3) NOT NULL,
+>>>>>>>> 88894f5 (体重登録API実装):prisma/migrations/20230906024653_init/migration.sql
     "contents" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -153,6 +157,7 @@ ALTER TABLE "_ColumnToColumnTag" ADD CONSTRAINT "_ColumnToColumnTag_A_fkey" FORE
 -- AddForeignKey
 ALTER TABLE "_ColumnToColumnTag" ADD CONSTRAINT "_ColumnToColumnTag_B_fkey" FOREIGN KEY ("B") REFERENCES "ColumnTags"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
+<<<<<<<< HEAD:prisma/migrations/20230925015658_/migration.sql
 -- AddExerciseMenu
 -- Seeding
 INSERT INTO "Exercises" ("腹筋");
@@ -166,3 +171,6 @@ INSERT INTO "Exercises" ("ヨガ");
 INSERT INTO "Exercises" ("ストレッチ");
 INSERT INTO "Exercises" ("水泳");
 INSERT INTO "Exercises" ("ダンベル");
+========
+INSERT INTO user(id,name) value("testId", "Tanaka");
+>>>>>>>> 88894f5 (体重登録API実装):prisma/migrations/20230906024653_init/migration.sql

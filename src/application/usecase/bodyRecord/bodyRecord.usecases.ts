@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Param } from '@nestjs/common';
 import {
   BODYRECORD_REPOSITORY,
   BodyRecordRepository,
