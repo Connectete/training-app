@@ -59,11 +59,11 @@ model BodyRecord {
   id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [userId])
   userId    String   @map("user_id")
-  dateTime  DateTime @map("date_time")
+  date      Date     @map("date_time")
   value     Float
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
+  @@unique(["userId","date"])
   @@map("BodyRecords")
 }
 
