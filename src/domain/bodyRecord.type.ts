@@ -4,3 +4,9 @@ export type bodyRecord = {
     deteTime: Date;
     value: number;
 };
+
+export type CreateBodyRecod = {
+    userId: string;
+    value: number;
+    dateTime: string | Date;
+};

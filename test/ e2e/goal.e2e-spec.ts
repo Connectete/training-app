@@ -18,7 +18,7 @@ describe('GoalController (e2e)', () => {
 
   it('/users/{userId}/goal returns goal data(200)', async () => {
     const res = await request(app.getHttpServer())
-      .get(`/users/${userId}/goal`)
+      .get(`/users/testId/goal`)
       .expect(200);
     expect(res.body).toEqual({
       id: 1,

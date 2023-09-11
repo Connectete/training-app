@@ -1,0 +1,19 @@
+title: createBodyRecordRequest
+description: bodyRecord request body
+type: object
+required:
+  - userId
+  - value
+  - dateTime
+properties:
+  userId: 
+    type: string
+    format: userId
+  value:
+    type: number
+  dateTime:
+    type: string
+examples:
+  - userId: random-string
+    value: 35
+    dateTime:  Fri Jul 02 2021 14:03:54 GMT+0100

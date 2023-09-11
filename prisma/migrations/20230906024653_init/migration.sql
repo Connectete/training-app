@@ -69,7 +69,7 @@ CREATE TABLE "Diaries" (
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
     "date_time" TIMESTAMP(3) NOT NULL,
-    "value" DOUBLE PRECISION NOT NULL,
+    "contents" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -150,3 +150,5 @@ ALTER TABLE "_ColumnToColumnTag" ADD CONSTRAINT "_ColumnToColumnTag_A_fkey" FORE
 
 -- AddForeignKey
 ALTER TABLE "_ColumnToColumnTag" ADD CONSTRAINT "_ColumnToColumnTag_B_fkey" FOREIGN KEY ("B") REFERENCES "ColumnTags"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+INSERT INTO user(id,name) value("testId", "Tanaka");
