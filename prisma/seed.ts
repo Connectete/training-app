@@ -52,7 +52,7 @@ async function main() {
     await prisma.bodyRecord.create({
       data: {
         userId: userId,
-        dateTime: now,
+        date: now,
         value: 70,
         createdAt: now,
         updatedAt: now,

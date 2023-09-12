@@ -1,6 +1,12 @@
 export type bodyRecord = {
     id: number;
     userId: string;
-    deteTime: Date;
+    dateTime: Date;
+    value: number;
+};
+
+export type     updateBodyRecord = {
+    userId: string;
+    dateTime: Date;
     value: number;
 };
