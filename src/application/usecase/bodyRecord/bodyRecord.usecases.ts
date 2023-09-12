@@ -3,7 +3,7 @@ import {
   BODYRECORD_REPOSITORY,
   BodyRecordRepository,
 } from '@/infrastructure/interfaces/bodyRecord.type';
-import { CreateBodyRecod, bodyRecord } from '@/domain/bodyRecord.type';
+import { CreateBodyRecord, bodyRecord } from '@/domain/bodyRecord.type';
 
 @Injectable()
 export class BodyRecordUseCase {
@@ -19,7 +19,7 @@ export class BodyRecordUseCase {
   async findByUserId(userId: bodyRecord['userId']): Promise<bodyRecord | null> {
     return this.bodyRecordRepository.findByUserId(userId);
   }
-  async createByUserId(body: CreateBodyRecod ): Promise<boolean> {
+  async createByUserId(body: CreateBodyRecord ): Promise<boolean> {
     return this.bodyRecordRepository.registerUser(body);
   }
 } 

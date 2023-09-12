@@ -1,26 +1,26 @@
 import { BodyRecordRepository } from "@/infrastructure/interfaces/bodyRecord.type";
 import { PrismaService } from "../prisma.service";
 import { Injectable} from "@nestjs/common";
-import { CreateBodyRecod } from "@/domain/bodyRecord.type";
+import { CreateBodyRecord } from "@/domain/bodyRecord.type";
 
 @Injectable()
 export class BodyRecordRepositoryImpl implements BodyRecordRepository {
     constructor(private readonly prisma: PrismaService) {}
     async findByUserId(userId: string) {
         return this.prisma.bodyRecord.findMany({
-            select: { id: false, userId: false, dateTime: true, value: true},
+            select: { userId: false, date: true, value: true},
             where: { userId },
             
         });
     }
-    async registerUser( createBodyRecod: CreateBodyRecod ) {
+    async registerUser( createBodyRecord: CreateBodyRecord ) {
         return this.prisma.bodyRecord.create({
             data: {
-                userId: createBodyRecod.userId,
-                value: createBodyRecod.value,
-                dateTime:  createBodyRecod.dateTime,
+                userId: createBodyRecord.userId,
+                value: createBodyRecord.value,
+                date:  createBodyRecord.date
             },
-            select: { userId: false, value: true, dateTime: true}
+            select: { userId: false, value: true, date: true}
         });
     }
 

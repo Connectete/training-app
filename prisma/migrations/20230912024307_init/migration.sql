@@ -150,5 +150,3 @@ ALTER TABLE "_ColumnToColumnTag" ADD CONSTRAINT "_ColumnToColumnTag_A_fkey" FORE
 
 -- AddForeignKey
 ALTER TABLE "_ColumnToColumnTag" ADD CONSTRAINT "_ColumnToColumnTag_B_fkey" FOREIGN KEY ("B") REFERENCES "ColumnTags"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
-INSERT INTO user(id,name) value("testId", "Tanaka");
