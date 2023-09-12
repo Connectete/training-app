@@ -1,14 +1,5 @@
-<<<<<<< HEAD
-export type diary = {
-  userId: string;
+export type Diary = {
+  userId : string;
   date: Date;
-  contents: string;
+  contents : string;
 };
-=======
-export type createDiary = {
-    userId : string;
-    dateTime: Date;
-    contents : string;
-};
-
->>>>>>> 0684630 (PostRequest以外をコミット)

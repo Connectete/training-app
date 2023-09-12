@@ -6,10 +6,6 @@ import { DiaryController } from './diary/diary.controller';
 
 @Module({
   imports: [ApplicationModule],
-<<<<<<< HEAD
-  controllers: [GoalController, BodyRecordController, DiaryController],
-=======
-  controllers: [GoalController,BodyRecordController,DiaryController], 
->>>>>>> 0684630 (PostRequest以外をコミット)
+  controllers: [GoalController,BodyRecordController,DiaryController],
 })
 export class ControllerModule {}
