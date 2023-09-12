@@ -15,5 +15,5 @@ export type updateBodyRecord = {
 export type CreateBodyRecod = {
     userId: string;
     value: number;
-    dateTime: string | Date;
+    date: Date;
 };

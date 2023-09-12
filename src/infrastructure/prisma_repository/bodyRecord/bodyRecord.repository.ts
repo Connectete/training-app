@@ -31,7 +31,7 @@ export class BodyRecordRepositoryImpl implements BodyRecordRepository {
         data: {
             userId: createBodyRecod.userId,
             value: createBodyRecod.value,
-            date:  createBodyRecod.dateTime,
+            date:  createBodyRecod.date,
         },
         select: { userId: false, value: true, date: true}
     });

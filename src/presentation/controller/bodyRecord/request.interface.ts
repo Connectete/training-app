@@ -10,9 +10,6 @@ export class GetRequest {
 export class PostRequest {
     @IsNumber({},{ message: '体重を入力してください'})
     value!: number;
-    @IsDate({ message: '登録日付を入力してください'})
-    @Type(() => Date)
-    dateTime!: Date;
 }
 
 
