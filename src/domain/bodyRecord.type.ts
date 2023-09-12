@@ -1,7 +1,7 @@
 export type bodyRecord = {
     id: number;
     userId: string;
-    dateTime: Date;
+    date: Date;
     value: number;
 };
 
