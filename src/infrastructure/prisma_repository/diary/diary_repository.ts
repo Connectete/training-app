@@ -1,5 +1,6 @@
 import { PrismaService } from "../prisma.service";
 import { Injectable} from "@nestjs/common";
+<<<<<<< HEAD
 import { Diary } from "@/domain/diary.type";
 import { DiaryRepository } from "@/infrastructure/interfaces/diary.type";
 
@@ -7,10 +8,20 @@ import { DiaryRepository } from "@/infrastructure/interfaces/diary.type";
 export class DiaryRepositoryImpl implements DiaryRepository {
     constructor(private readonly prisma: PrismaService) {}
     async createByUserId(createDiary: Diary) {
+=======
+import { createDiary } from "@/domain/diary.type";
+import { DiaryRepository } from "@/infrastructure/interfaces/diary.type";
+
+@Injectable()
+export class CreateDiaryRepositoryImpl implements DiaryRepository {
+    constructor(private readonly prisma: PrismaService) {}
+    async createDiaryByUserId(createDiary: createDiary) {
+>>>>>>> 0684630 (PostRequest以外をコミット)
         return this.prisma.diary.create({
             data:{
                 userId : createDiary.userId,
                 contents : createDiary.contents,
+<<<<<<< HEAD
                 date : createDiary.date,
             },
         });
@@ -28,4 +39,10 @@ export class DiaryRepositoryImpl implements DiaryRepository {
           },
         });
       }
+=======
+                dateTime : createDiary.dateTime,
+            },
+        });
+    };
+>>>>>>> 0684630 (PostRequest以外をコミット)
 };

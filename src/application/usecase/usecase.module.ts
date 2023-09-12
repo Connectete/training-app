@@ -5,7 +5,7 @@ import { BodyRecordUseCase } from './bodyRecord/bodyRecord.usecases';
 import { DiaryUseCase } from './diary/diary.usecase';
 @Module({
   imports: [InfrastructureModule],
-  providers: [GoalUseCase, BodyRecordUseCase , DiaryUseCase],
-  exports: [GoalUseCase, BodyRecordUseCase , DiaryUseCase],
+  providers: [GoalUseCase,BodyRecordUseCase,DiaryUseCase],
+  exports: [GoalUseCase,BodyRecordUseCase,DiaryUseCase],
 })
 export class UseCaseModule {}
