@@ -3,7 +3,7 @@ import {
   GOAL_REPOSITORY,
   GoalRepository,
 } from '@/infrastructure/interfaces/goal.type';
-import { Goal, UpdateGoal } from '@/domain/goal.type';
+import { Goal } from '@prisma/client';
 
 @Injectable()
 export class GoalUseCase {
@@ -18,8 +18,5 @@ export class GoalUseCase {
    */
   async findByUserId(userId: Goal['userId']): Promise<Goal | null> {
     return this.goalRepository.findByUserId(userId);
-  }
-  async updateGoal(userId: UpdateGoal['userId']): Promise<Goal | null> {
-    return this.goalRepository.updateGoal(userId);
   }
 }

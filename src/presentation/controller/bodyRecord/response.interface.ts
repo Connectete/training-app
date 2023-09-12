@@ -4,7 +4,7 @@ export type GetResponse = {
     value: number;
   };
   
-export type post = {
+export type postData = {
     value: string;
     userId: string;
     dateTime: string;
