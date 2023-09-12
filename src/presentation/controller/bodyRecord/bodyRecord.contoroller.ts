@@ -1,6 +1,6 @@
 import { Controller, Get, NotFoundException, Param,Put ,Body} from "@nestjs/common";
 import { GetRequest,PutRequest } from './request.interface';
-import { GetResponse } from "./respons.interface"; 
+import { GetResponse } from "./response.interface"; 
 import { BodyRecordUseCase } from "@/application/usecase/bodyRecord/bodyRecord.usecases";
 
 @Controller('')
@@ -19,7 +19,7 @@ export class BodyRecordController {
   ): Promise<boolean> {
     const updateBodyRecord = {
       userId : userId,
-      dateTime : new Date(date),
+      date : new Date(date),
       value : updateWeightRequest.value
     }
     

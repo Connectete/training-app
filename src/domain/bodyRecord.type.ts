@@ -5,8 +5,8 @@ export type bodyRecord = {
     value: number;
 };
 
-export type     updateBodyRecord = {
+export type updateBodyRecord = {
     userId: string;
-    dateTime: Date;
+    date: Date;
     value: number;
 };

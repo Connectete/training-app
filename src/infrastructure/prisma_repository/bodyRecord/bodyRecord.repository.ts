@@ -18,16 +18,12 @@ export class BodyRecordRepositoryImpl implements BodyRecordRepository {
             where: {
                 userId_date : {
                 userId: updateBodyRecord.userId, 
-                date: updateBodyRecord.dateTime,
+                date: updateBodyRecord.date,
                 } 
             },
             data: {
                 value: updateBodyRecord.value,
             },
         });
-    }
-    
-
-      
-        
+    }  
 }
