@@ -1,5 +1,4 @@
 import { IsNotEmpty, IsString, MaxLength, Matches } from 'class-validator';
-
 export class PutRequest {
   @IsNotEmpty({ message: '内容を入力してください' })
   @IsString({ message: '内容は文字列で入力してください' })
