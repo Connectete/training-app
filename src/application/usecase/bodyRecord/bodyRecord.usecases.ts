@@ -3,7 +3,7 @@ import {
   BODYRECORD_REPOSITORY,
   BodyRecordRepository,
 } from '@/infrastructure/interfaces/bodyRecord.type';
-import { bodyRecord } from '@/domain/bodyRecord.type';
+import { bodyRecord, updateBodyRecord} from '@/domain/bodyRecord.type';
 
 @Injectable()
 export class BodyRecordUseCase {
@@ -18,5 +18,8 @@ export class BodyRecordUseCase {
    */
   async findByUserId(userId: bodyRecord['userId']): Promise<bodyRecord | null> {
     return this.bodyRecordRepository.findByUserId(userId);
+  }
+  async updateByUserId(updateBodyRecord: updateBodyRecord): Promise<boolean> {
+    return this.bodyRecordRepository.updateByUserId(updateBodyRecord);
   }
 }
