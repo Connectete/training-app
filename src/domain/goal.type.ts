@@ -3,3 +3,9 @@ export type Goal = {
   userId: string;
   value: number;
 };
+
+export type  UpdateGoal = {
+userId: any;
+value: number;
+datetime: string | Date;
+};
