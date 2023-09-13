@@ -69,7 +69,7 @@ async function main() {
     await prisma.diary.create({
       data: {
         userId: userId,
-        dateTime: now,
+        date: now,
         contents: 'TEST DIARY',
         createdAt: now,
         updatedAt: now,

@@ -80,14 +80,14 @@ model ExerciseRecord {
 }
 
 model Diary {
-  id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [userId])
   userId    String   @map("user_id")
-  dateTime  DateTime @map("date_time")
+  date      DateTime @db.Date
   contents  String   @db.Text
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
+  @@unique(fields: [userId, date])
   @@map("Diaries")
 }
 
