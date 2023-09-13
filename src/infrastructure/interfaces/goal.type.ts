@@ -1,7 +1,5 @@
-import { Goal } from "@prisma/client";
-
+import { Goal } from '@/domain/goal.type';
 export const GOAL_REPOSITORY = Symbol.for('GOAL_REPOSITORY');
-
 export interface GoalRepository {
   /**
    * 目標体重をユーザIDから取得する

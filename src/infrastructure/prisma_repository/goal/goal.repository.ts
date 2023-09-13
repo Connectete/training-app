@@ -4,7 +4,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class GoalRepositoryImpl implements GoalRepository {
   constructor(private readonly prisma: PrismaService) {}
-
   /**
    * 目標体重をユーザIDから検索する
    * @param userId
@@ -15,14 +14,4 @@ export class GoalRepositoryImpl implements GoalRepository {
       where: { userId },
     });
   }
-  
-
-
-
-
-
-
-
-
-
 }

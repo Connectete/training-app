@@ -3,15 +3,13 @@ import {
   GOAL_REPOSITORY,
   GoalRepository,
 } from '@/infrastructure/interfaces/goal.type';
-import { Goal } from '@prisma/client';
-
+import { Goal } from '@/domain/goal.type';
 @Injectable()
 export class GoalUseCase {
   constructor(
     @Inject(GOAL_REPOSITORY)
     private readonly goalRepository: GoalRepository,
   ) {}
-
   /**
    * 目標体重をユーザIDから取得する
    * @param userId
