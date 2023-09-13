@@ -1,5 +1,5 @@
-export type GetResponse = {
-  id: number;
+export type DiaryGetResponse = {
   userId: string;
-  value: number;
+  date: Date;
+  contents: string;
 };
