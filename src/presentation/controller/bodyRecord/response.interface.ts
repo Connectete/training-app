@@ -1,6 +1,5 @@
 export type GetResponse = {
-    id: number;
-    userId: string;
-    value: number;
-  };
-  
+  id: number;
+  userId: string;
+  value: number;
+};

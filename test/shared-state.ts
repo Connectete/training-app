@@ -1,1 +1,1 @@
-export const sharedState: {} = {}
+export const sharedState: {} = {};
