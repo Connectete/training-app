@@ -1,12 +1,12 @@
 export type bodyRecord = {
-    id: number;
-    userId: string;
-    date: Date;
-    value: number;
+  id: number;
+  userId: string;
+  date: Date;
+  value: number;
 };
 
 export type updateBodyRecord = {
-    userId: string;
-    date: Date;
-    value: number;
+  userId: string;
+  date: Date;
+  value: number;
 };
