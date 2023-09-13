@@ -8,4 +8,5 @@ export interface DiaryRepository {
    * @param userId
    */
   updateByUserId(updateDiary: diary);
+  findByUserId(userID: string);
 }

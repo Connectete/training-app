@@ -19,4 +19,10 @@ export class DiaryRepositoryImpl implements DiaryRepository {
       },
     });
   }
+  async findByUserId(userId: string) {
+    return this.prisma.diary.findFirst({
+      select: { userId: true, date: true, contents: true },
+      where: { userId },
+    });
+  }
 }

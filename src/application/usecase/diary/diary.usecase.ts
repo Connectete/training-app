@@ -19,4 +19,7 @@ export class DiaryUseCase {
   async updateByUserId(updateDiary: diary): Promise<boolean> {
     return this.diaryRepository.updateByUserId(updateDiary);
   }
+  async findByUserId(userId: diary['userId']): Promise<diary | null> {
+    return this.diaryRepository.findByUserId(userId);
+  }
 }
