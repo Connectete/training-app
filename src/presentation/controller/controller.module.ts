@@ -6,6 +6,6 @@ import { DiaryController } from './diary/diary.controller';
 
 @Module({
   imports: [ApplicationModule],
-  controllers: [GoalController,BodyRecordController,DiaryController], 
+  controllers: [GoalController, BodyRecordController, DiaryController],
 })
 export class ControllerModule {}

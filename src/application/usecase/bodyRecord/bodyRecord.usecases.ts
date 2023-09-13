@@ -3,7 +3,7 @@ import {
   BODYRECORD_REPOSITORY,
   BodyRecordRepository,
 } from '@/infrastructure/interfaces/bodyRecord.type';
-import { bodyRecord, updateBodyRecord} from '@/domain/bodyRecord.type';
+import { bodyRecord, updateBodyRecord } from '@/domain/bodyRecord.type';
 
 @Injectable()
 export class BodyRecordUseCase {
