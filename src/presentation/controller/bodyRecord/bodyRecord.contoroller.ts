@@ -1,3 +1,4 @@
+
 import {
   Controller,
   Get,
@@ -9,7 +10,8 @@ import {
 import { GetRequest, PutRequest, PostRequest } from './request.interface';
 import { GetResponse } from './response.interface';
 import { BodyRecordUseCase } from '@/application/usecase/bodyRecord/bodyRecord.usecases';
-import { CreateBodyRecod } from "@/domain/bodyRecord.type";
+import { CreateBodyRecord } from "@/domain/bodyRecord.type";
+
 
 @Controller('')
 export class BodyRecordController {

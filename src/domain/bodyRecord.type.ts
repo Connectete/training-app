@@ -12,7 +12,7 @@ export type updateBodyRecord = {
 };
 
 
-export type CreateBodyRecod = {
+export type CreateBodyRecord = {
     userId: string;
     value: number;
     date: Date;

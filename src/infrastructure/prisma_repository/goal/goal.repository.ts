@@ -1,8 +1,6 @@
-import { UpdateGoal } from '@/domain/goal.type';
 import { GoalRepository } from '../../interfaces/goal.type';
 import { PrismaService } from '../prisma.service';
 import { Injectable } from '@nestjs/common';
-
 @Injectable()
 export class GoalRepositoryImpl implements GoalRepository {
   constructor(private readonly prisma: PrismaService) {}
@@ -17,9 +15,7 @@ export class GoalRepositoryImpl implements GoalRepository {
       where: { userId },
     });
   }
-  async updateGoal(updateGoal: UpdateGoal) {
-    return this.prisma.goal.update
-  }
+  
 
 
 
