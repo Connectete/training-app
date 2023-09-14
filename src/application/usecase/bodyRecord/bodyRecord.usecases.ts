@@ -1,9 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
-  BODYRECORD_REPOSITORY,
-  BodyRecordRepository,
-} from '@/infrastructure/interfaces/bodyRecord.type';
-import { bodyRecord, updateBodyRecord } from '@/domain/bodyRecord.type';
+import {BODYRECORD_REPOSITORY, BodyRecordRepository} from '@/infrastructure/interfaces/bodyRecord.type';
+import { bodyRecord, createBodyRecord, updateBodyRecord } from '@/domain/bodyRecord.type';
 
 @Injectable()
 export class BodyRecordUseCase {
@@ -21,5 +18,8 @@ export class BodyRecordUseCase {
   }
   async updateByUserId(updateBodyRecord: updateBodyRecord): Promise<boolean> {
     return this.bodyRecordRepository.updateByUserId(updateBodyRecord);
+  }
+  async createByUserId(createBodyRecord: createBodyRecord): Promise<boolean> {
+    return this.bodyRecordRepository.createBodyRecord(createBodyRecord);
   }
 }
