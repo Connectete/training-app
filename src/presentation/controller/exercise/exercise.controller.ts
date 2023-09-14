@@ -1,5 +1,5 @@
-import { Get, Param, Put, Body, Controller } from '@nestjs/common';
-import { ExerciseGetRequest, } from './request.interface';
+import { Get, Param, Post, Body, Controller } from '@nestjs/common';
+import { ExercisePostRequest } from './request.interface';
 import { ExerciseGetResponse } from './response.interface';
 import { ExerciseUseCase } from '@/application/usecase/exercise/exercise.usecase';
 
@@ -15,4 +15,19 @@ export class ExerciseController {
         const exercise = await this.exerciseUseCase.findByUserId(userId, new Date(date));
         return exercise;
     }
+    @Post('users/:userId/dates/:date/exercise/create')
+    async post(
+        @Param('userId') userId: string,
+        @Param('date') date: string,
+        @Body() createExerciseRequest: ExercisePostRequest,
+    ): Promise<boolean> {
+        const exercise = await this.exerciseUseCase.createExerciseRecord({
+            userId: userId,
+            date: new Date(date),
+            time: createExerciseRequest.time,
+            exerciseId: createExerciseRequest.exerciseId,
+            calorie: createExerciseRequest.calorie,
+        });
+        return exercise;
   }
+}

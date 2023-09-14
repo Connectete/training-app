@@ -3,7 +3,7 @@ import {
   EXERCISE_REPOSITORY,
   ExerciseRepository,
 } from '@/infrastructure/interfaces/exercise.type';
-import { exercise } from '@/domain/exercise.type';
+import { exerciseRecord } from '@/domain/exercise.type';
 
 @Injectable()
 export class ExerciseUseCase {
@@ -17,9 +17,14 @@ export class ExerciseUseCase {
    * @param userId
    */
   async findByUserId(
-    userId: exercise['userId'],
-    date: exercise['date'],
-  ): Promise<exercise | null> {
+    userId: exerciseRecord['userId'],
+    date: exerciseRecord['date'],
+  ): Promise<exerciseRecord | null> {
     return this.exerciseRepository.findByUserId(userId, date);
   }
-}
+  async createExerciseRecord(
+    exerciseRecord: exerciseRecord,
+  ): Promise<boolean> {
+    return this.exerciseRepository.createExerciseRecord(exerciseRecord);
+  }
+};
