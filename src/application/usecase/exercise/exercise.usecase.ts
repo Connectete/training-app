@@ -27,4 +27,7 @@ export class ExerciseUseCase {
   ): Promise<boolean> {
     return this.exerciseRepository.createExerciseRecord(exerciseRecord);
   }
+  async findAllByUserId(userId: exerciseRecord['userId']): Promise<exerciseRecord| null> {
+    return this.exerciseRepository.findAllByUserId(userId);
+  }
 };

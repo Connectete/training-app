@@ -1,6 +1,6 @@
 import { Get, Param, Post, Body, Controller } from '@nestjs/common';
 import { ExercisePostRequest } from './request.interface';
-import { ExerciseGetResponse } from './response.interface';
+import { ExerciseGetResponse, ExerciseGetAllResponse} from './response.interface';
 import { ExerciseUseCase } from '@/application/usecase/exercise/exercise.usecase';
 
 @Controller('')
@@ -30,4 +30,11 @@ export class ExerciseController {
         });
         return exercise;
   }
+   @Get('users/:userId/exercise/findMany')
+    async getAll(
+        @Param('userId') userId: string,
+    ): Promise<ExerciseGetAllResponse> {
+        const exercise = await this.exerciseUseCase.findAllByUserId(userId);
+        return exercise;
+    }
 }

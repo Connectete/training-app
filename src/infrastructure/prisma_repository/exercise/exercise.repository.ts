@@ -25,4 +25,12 @@ export class ExerciseRepositoryImpl implements ExerciseRepository {
       },
     });
   }
+  async findAllByUserId(userId: string) {
+    return this.prisma.exerciseRecord.findMany({
+      select: { userId: false, date: true, time: true, exercise: true ,calorie: true},
+      where: {
+        userId,
+      },
+    });
+  }
 }

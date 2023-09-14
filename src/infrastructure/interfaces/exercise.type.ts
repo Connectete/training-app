@@ -9,4 +9,5 @@ export interface ExerciseRepository {
    */
   findByUserId(userId: string, date: Date);
   createExerciseRecord(exercise: exerciseRecord);
+  findAllByUserId(userId: string);
 }
