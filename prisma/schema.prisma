@@ -73,7 +73,7 @@ model ExerciseRecord {
   userId     String   @map("user_id")
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
   exerciseId Int      @map("exercise_id")
-  dateTime   DateTime @map("date_time")
+  date       DateTime @db.Date
   time       Int
 
   @@map("ExirciseRecords")
