@@ -61,7 +61,7 @@ async function main() {
     await prisma.exerciseRecord.create({
       data: {
         userId: userId,
-        dateTime: now,
+        date: now,
         exerciseId: 1,
         time: 20,
       },
