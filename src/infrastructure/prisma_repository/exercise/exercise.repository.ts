@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { ExerciseRepository } from '@/infrastructure/interfaces/exercise.type';
-import { exercise } from '@/domain/exercise.type';
+import { exerciseRecord } from '@/domain/exercise.type';
 
 @Injectable()
 export class ExerciseRepositoryImpl implements ExerciseRepository {
@@ -11,6 +11,17 @@ export class ExerciseRepositoryImpl implements ExerciseRepository {
       select: { userId: true, date: true, time: true, exercise: true ,calorie: true},
       where: {
         AND: [{ userId }, { date }],
+      },
+    });
+  }
+  async createExerciseRecord(exerciseRecord: exerciseRecord) {
+    return this.prisma.exerciseRecord.create({
+      data: {
+        userId: exerciseRecord.userId,
+        date: exerciseRecord.date,
+        time: exerciseRecord.time,
+        exerciseId: exerciseRecord.exerciseId,
+        calorie: exerciseRecord.calorie,
       },
     });
   }

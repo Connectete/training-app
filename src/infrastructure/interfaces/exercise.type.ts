@@ -1,4 +1,4 @@
-import { exercise } from '@/domain/exercise.type';
+import { exerciseRecord } from '@/domain/exercise.type';
 
 export const EXERCISE_REPOSITORY = Symbol.for('EXERCISE_REPOSITORY');
 
@@ -8,4 +8,5 @@ export interface ExerciseRepository {
    * @param userId
    */
   findByUserId(userId: string, date: Date);
+  createExerciseRecord(exercise: exerciseRecord);
 }
