@@ -5,8 +5,9 @@ import {
   Param,
   Put,
   Body,
+  Post,
 } from '@nestjs/common';
-import { GetRequest, PutRequest } from './request.interface';
+import { GetRequest, PostRequest, PutRequest } from './request.interface';
 import { GetResponse } from './response.interface';
 import { BodyRecordUseCase } from '@/application/usecase/bodyRecord/bodyRecord.usecases';
 
@@ -34,5 +35,22 @@ export class BodyRecordController {
       updateBodyRecord,
     );
     return result;
+  }
+  @Post('users/:userId/dates/:date/bodyRecord/create')
+  async post(
+    @Param('userId') userId: string,
+    @Param('date') date: string,
+    @Body() createWeightRequest: PostRequest,
+  ): Promise<boolean> {
+    const createBodyRecord = {
+      userId: userId,
+      date: new Date(date),
+      value: createWeightRequest.value,
+    };
+    const result = await this.bodyRecordUseCase.createByUserId(
+      createBodyRecord,
+    );
+    return result;
+  
   }
 }
