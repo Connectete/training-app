@@ -38,7 +38,6 @@ async function main() {
     await prisma.exercise.create({
       data: {
         name: '体操2',
-        calorie: 25,
       },
     });
     await prisma.goal.create({

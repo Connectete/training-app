@@ -3,4 +3,5 @@ export type ExerciseGetResponse = {
   date: Date;
   time: number;
   exercise: string;
+  calorie: number;
 };
