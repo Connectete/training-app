@@ -8,7 +8,7 @@ export class ExerciseRepositoryImpl implements ExerciseRepository {
   constructor(private readonly prisma: PrismaService) {}
   async findByUserId(userId: string, date: Date) {
     return this.prisma.exerciseRecord.findMany({
-      select: { userId: true, date: true, time: true, exercise: true },
+      select: { userId: true, date: true, time: true, exercise: true ,calorie: true},
       where: {
         AND: [{ userId }, { date }],
       },

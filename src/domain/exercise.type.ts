@@ -3,5 +3,5 @@ export type exercise = {
   date: Date;
   time: number;
   exercise: string;
-  calories: number;
+  calorie: number;
 };
