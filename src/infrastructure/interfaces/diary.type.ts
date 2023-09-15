@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Diary } from "@/domain/diary.type";
 =======
 import { createDiary } from "@/domain/diary.type";
@@ -19,3 +20,17 @@ export interface DiaryRepository{
   createDiaryByUserId( createDiary: createDiary);
 }
 >>>>>>> 0684630 (PostRequest以外をコミット)
+=======
+import { diary } from '@/domain/diary.type';
+
+export const DIARY_REPOSITORY = Symbol.for('DIARY_REPOSITORY');
+
+export interface DiaryRepository {
+  /**
+   * 日記ををユーザIDから更新する
+   * @param userId
+   */
+  updateByUserId(updateDiary: diary);
+  createDiaryByUserId( createDiary: diary);
+}
+>>>>>>> 0ce6b41 (日記登録APIの修正)
