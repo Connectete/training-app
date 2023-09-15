@@ -19,6 +19,7 @@ export class DiaryUseCase {
   async updateByUserId(updateDiary: Diary): Promise<boolean> {
     return this.diaryRepository.updateByUserId(updateDiary);
   }
+
   async createByUserId(createDiary: Diary): Promise<boolean> {
     return this.diaryRepository.createByUserId(createDiary);
   }

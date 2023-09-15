@@ -1,6 +1,6 @@
 import { Controller,Param, Put, Body,Post } from '@nestjs/common';
 import { PutRequest, PostRequest } from './request.interface';
-import { DiaryUseCase } from '@/application/usecase/diary/diary.usecase';
+import { DiaryUseCase } from '@/usecase/diary/diary.usecase';
 
 @Controller('')
 export class DiaryController {
@@ -28,12 +28,13 @@ export class DiaryController {
     @Param('date') date: string,
     @Body() createContentsRequest: PostRequest,
   ): Promise<boolean> {
-    const createContents= {
+    const createDiary= {
       userId : userId,
-      date : new Date(date),
+      dateTime : new Date(date),
       contents : createContentsRequest.contents
-    }
-    const result = await this.diaryUseCase.createByUserId(createContents);
+    };
+
+    const result = await this.diaryUseCase.createByUserId(createDiary);
     return result;
   }
 }
