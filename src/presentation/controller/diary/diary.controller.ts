@@ -28,7 +28,7 @@ export class DiaryController {
     return result;
   }
 
-  @Get('users/:userId/diary/find')
+  @Get('users/:userId/diary')
   async get(@Param() { userId }: DiaryGetRequest): Promise<DiaryGetResponse> {
     const diary = await this.diaryUseCase.findByUserId(userId);
     return diary;
