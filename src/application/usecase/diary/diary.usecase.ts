@@ -1,8 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {
-  DIARY_REPOSITORY,
-  DiaryRepository,
-} from '@/infrastructure/interfaces/diary.type';
+import { DIARY_REPOSITORY,DiaryRepository} from '@/infrastructure/interfaces/diary.type';
 import { diary } from '@/domain/diary.type';
 
 @Injectable()
@@ -18,5 +15,8 @@ export class DiaryUseCase {
    */
   async updateByUserId(updateDiary: diary): Promise<boolean> {
     return this.diaryRepository.updateByUserId(updateDiary);
+  }
+  async createDiaryByUserId(createDiary: diary): Promise<boolean> {
+    return this.diaryRepository.createDiaryByUserId(createDiary);
   }
 }
