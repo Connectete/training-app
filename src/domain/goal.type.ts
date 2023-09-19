@@ -4,8 +4,7 @@ export type Goal = {
   value: number;
 };
 
-export type  UpdateGoal = {
-userId: any;
-value: number;
-datetime: string | Date;
+export type UpdateGoal = {
+  userId: string;
+  goal: number;
 };

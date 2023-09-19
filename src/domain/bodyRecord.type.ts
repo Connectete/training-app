@@ -5,7 +5,7 @@ export type bodyRecord = {
   value: number;
 };
 
-<<<<<<< HEAD
+
 export type updateBodyRecord = {
   userId: string;
   date: Date;
@@ -17,10 +17,10 @@ export type createBodyRecord = {
   date: Date;
   value: number;
 };
-=======
+
 export type CreateBodyRecord = {
+
     userId: string;
     value: number;
     date: Date;
 };
->>>>>>> 214ca7f (db設計の再修正)
