@@ -1,40 +1,67 @@
-import { Get, Param, Post, Body, Controller } from '@nestjs/common';
-import { ExercisePostRequest } from './request.interface';
-import { ExerciseGetResponse, ExerciseGetAllResponse} from './response.interface';
+import { Get, Param, Post, Put, Body, Controller } from '@nestjs/common';
+import {
+  ExerciseRecordCreateRequest,
+  ExerciseRecordUpdateRequest,
+} from './request.interface';
+import {
+  ExerciseGetResponse,
+  ExerciseGetAllResponse,
+} from './response.interface';
 import { ExerciseRecordUseCase } from '@/application/usecase/exerciseRecord/exerciseRecord.usecase';
 
 @Controller('')
 export class ExerciseRecordController {
-    constructor(private readonly exerciseRecordUseCase: ExerciseRecordUseCase) {}
+  constructor(private readonly exerciseRecordUseCase: ExerciseRecordUseCase) {}
 
-    @Get('users/:userId/dates/:date/exerciseRecord')
-    async get(
-        @Param('userId') userId: string,
-        @Param('date') date: string,
-    ): Promise<ExerciseGetResponse> {
-        const exercise = await this.exerciseRecordUseCase.findByUserId(userId, new Date(date));
-        return exercise;
-    }
-    @Post('users/:userId/dates/:date/exerciseRecord/create')
-    async post(
-        @Param('userId') userId: string,
-        @Param('date') date: string,
-        @Body() createExerciseRequest: ExercisePostRequest,
-    ): Promise<boolean> {
-        const exercise = await this.exerciseRecordUseCase.createExerciseRecord({
-            userId: userId,
-            date: new Date(date),
-            time: createExerciseRequest.time,
-            exerciseId: createExerciseRequest.exerciseId,
-            calorie: createExerciseRequest.calorie,
-        });
-        return exercise;
+  @Get('users/:userId/dates/:date/exerciseRecord')
+  async get(
+    @Param('userId') userId: string,
+    @Param('date') date: string,
+  ): Promise<ExerciseGetResponse> {
+    const exercise = await this.exerciseRecordUseCase.findByUserId(
+      userId,
+      new Date(date),
+    );
+    return exercise;
   }
-   @Get('users/:userId/exerciseRecord/all')
-    async getAll(
-        @Param('userId') userId: string,
-    ): Promise<ExerciseGetAllResponse> {
-        const exercise = await this.exerciseRecordUseCase.findAllByUserId(userId);
-        return exercise;
-    }
+  @Post('users/:userId/dates/:date/exerciseRecord/create')
+  async post(
+    @Param('userId') userId: string,
+    @Param('date') date: string,
+    @Body() createExerciseRequest: ExerciseRecordCreateRequest,
+  ): Promise<boolean> {
+    const exercise = await this.exerciseRecordUseCase.createExerciseRecord({
+      userId: userId,
+      date: new Date(date),
+      timeCount: createExerciseRequest.timeCount,
+      exerciseId: createExerciseRequest.exerciseId,
+      calorie: createExerciseRequest.calorie,
+    });
+    return exercise;
+  }
+  @Get('users/:userId/exerciseRecord/all')
+  async getAll(
+    @Param('userId') userId: string,
+  ): Promise<ExerciseGetAllResponse> {
+    const exercise = await this.exerciseRecordUseCase.findAllByUserId(userId);
+    return exercise;
+  }
+  @Put('users/:userId/dates/:date/exerciseId/:exerciseId/exerciseRecord/update')
+  async put(
+    @Param('userId') userId: string,
+    @Param('date') date: string,
+    @Param('exerciseId') exerciseId: string,
+    @Body() updateExerciseRequest: ExerciseRecordUpdateRequest,
+  ): Promise<boolean> {
+    const parsedExerciseId = parseInt(exerciseId, 10);
+    const exerciseRecord =
+      await this.exerciseRecordUseCase.updateExerciseRecord({
+        userId: userId,
+        date: new Date(date),
+        timeCount: updateExerciseRequest.timeCount,
+        exerciseId: parsedExerciseId,
+        calorie: updateExerciseRequest.calorie,
+      });
+    return exerciseRecord;
+  }
 }

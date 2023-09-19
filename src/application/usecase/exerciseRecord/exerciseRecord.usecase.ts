@@ -22,12 +22,15 @@ export class ExerciseRecordUseCase {
   ): Promise<exerciseRecord | null> {
     return this.exerciseRecordRepository.findByUserId(userId, date);
   }
-  async createExerciseRecord(
-    exerciseRecord: exerciseRecord,
-  ): Promise<boolean> {
+  async createExerciseRecord(exerciseRecord: exerciseRecord): Promise<boolean> {
     return this.exerciseRecordRepository.createExerciseRecord(exerciseRecord);
   }
-  async findAllByUserId(userId: exerciseRecord['userId']): Promise<exerciseRecord| null> {
+  async findAllByUserId(
+    userId: exerciseRecord['userId'],
+  ): Promise<exerciseRecord | null> {
     return this.exerciseRecordRepository.findAllByUserId(userId);
   }
-};
+  async updateExerciseRecord(exerciseRecord: exerciseRecord): Promise<boolean> {
+    return this.exerciseRecordRepository.updateExerciseRecord(exerciseRecord);
+  }
+}

@@ -1,6 +1,8 @@
 import { exerciseRecord } from '@/domain/exerciseRecord.type';
 
-export const EXERCISERECORD_REPOSITORY = Symbol.for('EXERCISERECORD_REPOSITORY');
+export const EXERCISERECORD_REPOSITORY = Symbol.for(
+  'EXERCISERECORD_REPOSITORY',
+);
 
 export interface ExerciseRecordRepository {
   /**
@@ -10,4 +12,5 @@ export interface ExerciseRecordRepository {
   findByUserId(userId: string, date: Date);
   createExerciseRecord(exercise: exerciseRecord);
   findAllByUserId(userId: string);
+  updateExerciseRecord(exerciseRecord: exerciseRecord);
 }

@@ -75,6 +75,7 @@ model ExerciseRecord {
   timeCount  Int      @default(0)
   calorie    Int      @default(0)
 
+  @@unique(fields: [userId,date,exerciseId])
   @@map("ExerciseRecords")
 }
 

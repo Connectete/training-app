@@ -1,7 +1,7 @@
 export type exerciseRecord = {
   userId: string;
   date: Date;
-  time: number;
+  timeCount: number;
   calorie: number;
   exerciseId: number;
 };
