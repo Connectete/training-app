@@ -62,7 +62,7 @@ async function main() {
         userId: userId,
         date: now,
         exerciseId: 1,
-        time: 20,
+        timeCount: 20,
       },
     });
     await prisma.diary.create({

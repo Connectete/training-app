@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
-import { ExerciseRepository } from '@/infrastructure/interfaces/exercise.type';
-import { exerciseRecord } from '@/domain/exercise.type';
+import { ExerciseRecordRepository } from '@/infrastructure/interfaces/exerciseRecord.type';
+import { exerciseRecord } from '@/domain/exerciseRecord.type';
 
 @Injectable()
-export class ExerciseRepositoryImpl implements ExerciseRepository {
+export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
   constructor(private readonly prisma: PrismaService) {}
   async findByUserId(userId: string, date: Date) {
     return this.prisma.exerciseRecord.findMany({
-      select: { userId: true, date: true, time: true, exercise: true ,calorie: true},
+      select: { userId: true, date: true, timeCount: true, exercise: true ,calorie: true},
       where: {
         AND: [{ userId }, { date }],
       },
@@ -19,7 +19,7 @@ export class ExerciseRepositoryImpl implements ExerciseRepository {
       data: {
         userId: exerciseRecord.userId,
         date: exerciseRecord.date,
-        time: exerciseRecord.time,
+        timeCount: exerciseRecord.time,
         exerciseId: exerciseRecord.exerciseId,
         calorie: exerciseRecord.calorie,
       },
@@ -27,7 +27,7 @@ export class ExerciseRepositoryImpl implements ExerciseRepository {
   }
   async findAllByUserId(userId: string) {
     return this.prisma.exerciseRecord.findMany({
-      select: { userId: false, date: true, time: true, exercise: true ,calorie: true},
+      select: { userId: false, date: true, timeCount: true, exercise: true ,calorie: true},
       where: {
         userId,
       },
