@@ -8,9 +8,10 @@ export class GetRequest {
 }
 
 export class PostRequest {
-    @IsNumber({},{ message: '体重を入力してください'})
-    value!: number;
+  @IsNumber({}, { message: '体重を入力してください' })
+  value!: number;
 }
+
 // export class PostRequest{
 //   @IsNotEmpty({ message: 'ユーザIDを入力してください' })
 //   userId!: string;

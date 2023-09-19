@@ -5,10 +5,10 @@ import { GoalRepositoryImpl } from '@/infrastructure/prisma_repository/goal/goal
 import { BODYRECORD_REPOSITORY } from '../interfaces/bodyRecord.type';
 import { BodyRecordRepositoryImpl } from './bodyRecord/bodyRecord.repository';
 @Module({
-providers: [
+  providers: [
     PrismaService,
     { provide: GOAL_REPOSITORY, useClass: GoalRepositoryImpl },
-    { provide: BODYRECORD_REPOSITORY, useClass: BodyRecordRepositoryImpl}
+    { provide: BODYRECORD_REPOSITORY, useClass: BodyRecordRepositoryImpl },
   ],
   exports: [GOAL_REPOSITORY, BODYRECORD_REPOSITORY],
 })

@@ -18,15 +18,18 @@ export class GoalRepositoryImpl implements GoalRepository {
     });
   }
   async updateGoal(updateGoal: UpdateGoal) {
-    return this.prisma.goal.update
+    const result = this.prisma.goal.update({
+      where: {
+        userId: updateGoal.userId,
+      },
+      data: {
+        value: updateGoal.goal,
+      },
+    });
+    if (result == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
-
-
-
-
-
-
-
-
-
 }

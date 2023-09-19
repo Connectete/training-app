@@ -19,7 +19,7 @@ export class BodyRecordUseCase {
   async findByUserId(userId: bodyRecord['userId']): Promise<bodyRecord | null> {
     return this.bodyRecordRepository.findByUserId(userId);
   }
-  async createByUserId(body: CreateBodyRecord ): Promise<boolean> {
+  async createByUserId(body: CreateBodyRecord): Promise<boolean> {
     return this.bodyRecordRepository.registerUser(body);
   }
-} 
+}

@@ -19,7 +19,7 @@ export class GoalUseCase {
   async findByUserId(userId: Goal['userId']): Promise<Goal | null> {
     return this.goalRepository.findByUserId(userId);
   }
-  async updateGoal(userId: UpdateGoal['userId']): Promise<Goal | null> {
-    return this.goalRepository.updateGoal(userId);
+  async updateGoal(UpdateGoal: UpdateGoal): Promise<boolean> {
+    return this.goalRepository.updateGoal(UpdateGoal);
   }
 }

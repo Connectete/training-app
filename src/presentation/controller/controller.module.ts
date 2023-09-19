@@ -5,6 +5,6 @@ import { BodyRecordController } from './bodyRecord/bodyRecord.contoroller';
 
 @Module({
   imports: [ApplicationModule],
-  controllers: [GoalController,BodyRecordController], 
+  controllers: [GoalController, BodyRecordController],
 })
 export class ControllerModule {}

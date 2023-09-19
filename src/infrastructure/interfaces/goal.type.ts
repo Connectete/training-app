@@ -8,5 +8,5 @@ export interface GoalRepository {
    * @param userId
    */
   findByUserId(userId: string): Promise<Goal | null>;
-  updateGoal(updateGoal: UpdateGoal);
+  updateGoal(updateGoal: UpdateGoal): Promise<boolean>;
 }
