@@ -8,3 +8,8 @@ export type UpdateGoal = {
   userId: string;
   goal: number;
 };
+
+export type CreateGoal = {
+  userId: string;
+  goal: number;
+};

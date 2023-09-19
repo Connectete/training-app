@@ -1,4 +1,4 @@
-import { Goal, UpdateGoal } from '@/domain/goal.type';
+import { Goal, UpdateGoal, CreateGoal } from '@/domain/goal.type';
 
 export const GOAL_REPOSITORY = Symbol.for('GOAL_REPOSITORY');
 
@@ -9,4 +9,5 @@ export interface GoalRepository {
    */
   findByUserId(userId: string): Promise<Goal | null>;
   updateGoal(updateGoal: UpdateGoal): Promise<boolean>;
+  createGoal(createGoal: CreateGoal): Promise<boolean>;
 }
