@@ -36,12 +36,8 @@ export class DiaryController {
     const getDiary = {
       userId: userId,
       date: new Date(date),
-      contents: '',
     };
     const result = await this.diaryUseCase.findByUserId(getDiary);
-    return {
-    userId: result.userId,
-    date: result.date,
-    contents: result.contents,
-  };}
+    return result;
+  }
 }

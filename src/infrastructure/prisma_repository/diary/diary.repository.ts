@@ -1,12 +1,12 @@
 import { DiaryRepository } from '@/infrastructure/interfaces/diary.type';
 import { PrismaService } from '../prisma.service';
 import { Injectable } from '@nestjs/common';
-import { Diary } from '@/domain/diary.type';
+import { Diary, UpdateDiary } from '@/domain/diary.type';
 
 @Injectable()
 export class DiaryRepositoryImpl implements DiaryRepository {
   constructor(private readonly prisma: PrismaService) {}
-  async updateByUserId(updateDiary: Diary) {
+  async updateByUserId(updateDiary: UpdateDiary) {
     return this.prisma.diary.update({
       where: {
         userId_date: {
