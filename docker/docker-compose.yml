@@ -1,18 +1,6 @@
-version: "3.8"
+version: '24.0.6'
 
 services:
-  db:
-    image: postgres:14
-    container_name: postges
-    environment:
-      POSTGRES_DATABASE: healthy
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-    ports:
-      - 5432:5432
-    volumes:
-      - ./data:/var/lib/postgresql/data
-
   minio:
     image: minio/minio:latest
     ports:

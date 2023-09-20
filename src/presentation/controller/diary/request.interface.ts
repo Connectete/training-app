@@ -13,3 +13,8 @@ export class PutRequest {
   )
   contents: string;
 }
+
+export class DiaryGetRequest {
+  @IsNotEmpty({ message: 'ユーザーIDを入力してください' })
+  userId: string;
+}
