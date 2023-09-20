@@ -1,4 +1,8 @@
-import { bodyRecord, createBodyRecord, updateBodyRecord } from '@/domain/bodyRecord.type';
+import {
+  bodyRecord,
+  createBodyRecord,
+  updateBodyRecord,
+} from '@/domain/bodyRecord.type';
 
 export const BODYRECORD_REPOSITORY = Symbol.for('BODYRECORD_REPOSITORY');
 
