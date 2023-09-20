@@ -1,5 +1,5 @@
 export type UpdateDiary = {
-  userId?: string;
+  userId: string;
   date: Date;
   contents: string;
 };
