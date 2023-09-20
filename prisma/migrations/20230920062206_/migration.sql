@@ -25,7 +25,6 @@ CREATE TABLE "Accounts" (
 CREATE TABLE "Exercises" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "calorie" INTEGER NOT NULL,
 
     CONSTRAINT "Exercises_pkey" PRIMARY KEY ("id")
 );
@@ -51,26 +50,24 @@ CREATE TABLE "BodyRecords" (
 );
 
 -- CreateTable
-CREATE TABLE "ExirciseRecords" (
+CREATE TABLE "ExerciseRecords" (
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
     "exercise_id" INTEGER NOT NULL,
-    "date_time" TIMESTAMP(3) NOT NULL,
+    "date" DATE NOT NULL,
     "time" INTEGER NOT NULL,
+    "calorie" INTEGER NOT NULL DEFAULT 0,
 
-    CONSTRAINT "ExirciseRecords_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ExerciseRecords_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Diaries" (
-    "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
-    "date_time" TIMESTAMP(3) NOT NULL,
+    "date" DATE NOT NULL,
     "contents" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "Diaries_pkey" PRIMARY KEY ("id")
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateTable
@@ -119,6 +116,9 @@ CREATE UNIQUE INDEX "Exercises_name_key" ON "Exercises"("name");
 CREATE UNIQUE INDEX "BodyRecords_user_id_date_key" ON "BodyRecords"("user_id", "date");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Diaries_user_id_date_key" ON "Diaries"("user_id", "date");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "_ColumnToColumnTag_AB_unique" ON "_ColumnToColumnTag"("A", "B");
 
 -- CreateIndex
@@ -134,10 +134,10 @@ ALTER TABLE "Goals" ADD CONSTRAINT "Goals_user_id_fkey" FOREIGN KEY ("user_id") 
 ALTER TABLE "BodyRecords" ADD CONSTRAINT "BodyRecords_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ExirciseRecords" ADD CONSTRAINT "ExirciseRecords_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ExerciseRecords" ADD CONSTRAINT "ExerciseRecords_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ExirciseRecords" ADD CONSTRAINT "ExirciseRecords_exercise_id_fkey" FOREIGN KEY ("exercise_id") REFERENCES "Exercises"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ExerciseRecords" ADD CONSTRAINT "ExerciseRecords_exercise_id_fkey" FOREIGN KEY ("exercise_id") REFERENCES "Exercises"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Diaries" ADD CONSTRAINT "Diaries_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;

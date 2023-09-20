@@ -62,7 +62,7 @@ async function main() {
         userId: userId,
         date: now,
         exerciseId: 1,
-        time: 20,
+        timeCount: 20,
       },
     });
     await prisma.diary.create({
@@ -77,7 +77,7 @@ async function main() {
     await prisma.diet.create({
       data: {
         userId: userId,
-        dateTime: now,
+        date: now,
         photo: 'PATH-TO-PHOTO',
         type: DietType.MORNING,
         createdAt: now,
