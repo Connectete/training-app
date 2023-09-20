@@ -17,4 +17,6 @@ export class PutRequest {
 export class DiaryGetRequest {
   @IsNotEmpty({ message: 'ユーザーIDを入力してください' })
   userId: string;
+  @IsNotEmpty({ message: '日付を入力してください' })
+  date: string;
 }

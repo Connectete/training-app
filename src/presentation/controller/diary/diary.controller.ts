@@ -28,9 +28,20 @@ export class DiaryController {
     return result;
   }
 
-  @Get('users/:userId/diary/find')
-  async get(@Param() { userId }: DiaryGetRequest): Promise<DiaryGetResponse> {
-    const diary = await this.diaryUseCase.findByUserId(userId);
-    return diary;
-  }
+  @Get('users/:userId/dates/:date/diary')
+  async get(
+    @Param() { userId }: DiaryGetRequest,
+    @Param() { date }: DiaryGetRequest,
+  ): Promise<DiaryGetResponse> {
+    const getDiary = {
+      userId: userId,
+      date: new Date(date),
+      contents: '',
+    };
+    const result = await this.diaryUseCase.findByUserId(getDiary);
+    return {
+    userId: result.userId,
+    date: result.date,
+    contents: result.contents,
+  };}
 }

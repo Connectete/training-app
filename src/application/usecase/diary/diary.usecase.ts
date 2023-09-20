@@ -3,7 +3,7 @@ import {
   DIARY_REPOSITORY,
   DiaryRepository,
 } from '@/infrastructure/interfaces/diary.type';
-import { diary } from '@/domain/diary.type';
+import { Diary } from '@/domain/diary.type';
 
 @Injectable()
 export class DiaryUseCase {
@@ -16,10 +16,10 @@ export class DiaryUseCase {
    * 記録体重をユーザIDから取得する
    * @param userId
    */
-  async updateByUserId(updateDiary: diary): Promise<boolean> {
+  async updateByUserId(updateDiary: Diary): Promise<boolean> {
     return this.diaryRepository.updateByUserId(updateDiary);
   }
-  async findByUserId(userId: diary['userId']): Promise<diary | null> {
-    return this.diaryRepository.findByUserId(userId);
+  async findByUserId(getDiary: Diary): Promise<Diary | null> {
+    return this.diaryRepository.findByUserId(getDiary);
   }
 }
