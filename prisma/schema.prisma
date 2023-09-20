@@ -99,15 +99,16 @@ enum DietType {
 }
 
 model Diet {
-  id        Int      @id @default(autoincrement())
+  id        Int      @default(autoincrement())
   user      User     @relation(fields: [userId], references: [userId])
-  userId    String   @map("user_id")
+  userId    String   @id @map("user_id")
   photo     String
   type      DietType
-  dateTime  DateTime @map("date_time")
+  date      DateTime @map("date_time")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
+  @@unique(fields: [userId, date, type])
   @@map("Diets")
 }
 

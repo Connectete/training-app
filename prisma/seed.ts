@@ -77,7 +77,7 @@ async function main() {
     await prisma.diet.create({
       data: {
         userId: userId,
-        dateTime: now,
+        date: now,
         photo: 'PATH-TO-PHOTO',
         type: DietType.MORNING,
         createdAt: now,
