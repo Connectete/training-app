@@ -1,7 +1,7 @@
 import { DiaryRepository } from '@/infrastructure/interfaces/diary.type';
 import { PrismaService } from '../prisma.service';
 import { Injectable } from '@nestjs/common';
-import { Diary, UpdateDiary } from '@/domain/diary.type';
+import { Diary, UpdateDiary, CreateDiary } from '@/domain/diary.type';
 
 @Injectable()
 export class DiaryRepositoryImpl implements DiaryRepository {
@@ -28,7 +28,15 @@ export class DiaryRepositoryImpl implements DiaryRepository {
         },
       },
       select: { contents: true },
-    }
-    );
+    });
+  }
+  async createDiary(createDiary: CreateDiary) {
+    return this.prisma.diary.create({
+      data: {
+        userId: createDiary.userId,
+        date: createDiary.date,
+        contents: createDiary.contents,
+      },
+    });
   }
 }

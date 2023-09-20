@@ -4,8 +4,9 @@ import {
   Put,
   Body,
   Get,
+  Post
 } from '@nestjs/common';
-import { DiaryGetRequest, PutRequest } from './request.interface';
+import { DiaryGetRequest, PutRequest, PostRequest } from './request.interface';
 import { DiaryGetResponse } from './response.interface';
 import { DiaryUseCase } from '@/application/usecase/diary/diary.usecase';
 
@@ -40,4 +41,20 @@ export class DiaryController {
     const result = await this.diaryUseCase.findByUserId(getDiary);
     return result;
   }
+
+  @Post('users/:userId/dates/:date/diary/create')
+  async post(
+    @Param() { userId }: PostRequest,
+    @Param() { date }: PostRequest,
+    @Body() createDiaryRequest: PostRequest,
+  ): Promise<boolean> {
+    console.log(createDiaryRequest);
+    const createDiary = {
+      userId: userId,
+      date: new Date(date),
+      contents: createDiaryRequest.contents,
+    };
+    const result = await this.diaryUseCase.createDiary(createDiary);
+    return result;
+  };
 }
