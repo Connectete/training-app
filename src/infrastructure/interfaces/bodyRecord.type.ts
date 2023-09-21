@@ -1,4 +1,4 @@
-import { bodyRecord, updateBodyRecord } from '@/domain/bodyRecord.type';
+import { bodyRecord, createBodyRecord, updateBodyRecord } from '@/domain/bodyRecord.type';
 
 export const BODYRECORD_REPOSITORY = Symbol.for('BODYRECORD_REPOSITORY');
 
@@ -9,4 +9,5 @@ export interface BodyRecordRepository {
    */
   findByUserId(userId: string);
   updateByUserId(updateBodyRecord: updateBodyRecord);
+  createBodyRecord(createBodyRecord: createBodyRecord);
 }

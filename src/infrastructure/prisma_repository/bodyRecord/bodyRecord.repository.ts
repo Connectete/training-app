@@ -1,7 +1,7 @@
 import { BodyRecordRepository } from '@/infrastructure/interfaces/bodyRecord.type';
 import { PrismaService } from '../prisma.service';
 import { Injectable } from '@nestjs/common';
-import { updateBodyRecord } from '@/domain/bodyRecord.type';
+import { createBodyRecord, updateBodyRecord } from '@/domain/bodyRecord.type';
 
 @Injectable()
 export class BodyRecordRepositoryImpl implements BodyRecordRepository {
@@ -25,4 +25,13 @@ export class BodyRecordRepositoryImpl implements BodyRecordRepository {
       },
     });
   }
+  async createBodyRecord(createBodyRecord: createBodyRecord) {
+    return this.prisma.bodyRecord.create({
+      data: { 
+        userId: createBodyRecord.userId,
+        date: createBodyRecord.date,
+        value: createBodyRecord.value,
+        },
+      });  
+    }
 }
