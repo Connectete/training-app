@@ -1,6 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
-import {BODYRECORD_REPOSITORY, BodyRecordRepository} from '@/infrastructure/interfaces/bodyRecord.type';
-import { bodyRecord, createBodyRecord, updateBodyRecord } from '@/domain/bodyRecord.type';
+import {
+  BODYRECORD_REPOSITORY,
+  BodyRecordRepository,
+} from '@/infrastructure/interfaces/bodyRecord.type';
+import {
+  bodyRecord,
+  createBodyRecord,
+  updateBodyRecord,
+} from '@/domain/bodyRecord.type';
 
 @Injectable()
 export class BodyRecordUseCase {

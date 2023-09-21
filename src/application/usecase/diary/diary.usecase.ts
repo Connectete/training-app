@@ -3,7 +3,7 @@ import {
   DIARY_REPOSITORY,
   DiaryRepository,
 } from '@/infrastructure/interfaces/diary.type';
-import { Diary, UpdateDiary } from '@/domain/diary.type';
+import { Diary, UpdateDiary, CreateDiary } from '@/domain/diary.type';
 
 @Injectable()
 export class DiaryUseCase {
@@ -21,5 +21,8 @@ export class DiaryUseCase {
   }
   async findByUserId(getDiary: Diary): Promise<Diary | null> {
     return this.diaryRepository.findByUserId(getDiary);
+  }
+  async createDiary(createDiary: CreateDiary): Promise<boolean> {
+    return this.diaryRepository.createDiary(createDiary);
   }
 }

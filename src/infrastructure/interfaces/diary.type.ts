@@ -1,4 +1,4 @@
-import { Diary, UpdateDiary } from '@/domain/diary.type';
+import { Diary, UpdateDiary, CreateDiary } from '@/domain/diary.type';
 
 export const DIARY_REPOSITORY = Symbol.for('DIARY_REPOSITORY');
 
@@ -9,4 +9,5 @@ export interface DiaryRepository {
    */
   updateByUserId(updateDiary: UpdateDiary);
   findByUserId(getDiary: Diary);
+  createDiary(createDiary: CreateDiary);
 }
