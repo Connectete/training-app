@@ -1,7 +1,8 @@
-import { Get, Param, Put, Body, Controller } from '@nestjs/common';
-import { ExerciseGetRequest, } from './request.interface';
-import { ExerciseGetResponse } from './response.interface';
+import { Get, Param, Controller } from '@nestjs/common';
+
+import { ExerciseGetResponse,Exercise } from './response.interface';
 import { ExerciseRecordUseCase } from '@/application/usecase/exerciseRecord/exerciseRecord.usecase';
+
 
 @Controller('')
 export class ExerciseRecordController {
@@ -11,6 +12,16 @@ export class ExerciseRecordController {
     async get(
         @Param('userId') userId: string,
     ): Promise<ExerciseGetResponse> {
+        const getExerciseRecord = await this.exerciseRecordUseCase.findByUserId(userId);
+        return {
+            userId: getExerciseRecord.userId,
+            date: getExerciseRecord.date,
+            timeCount: getExerciseRecord.timeCount,
+            exercise: getExerciseRecord.exercise,
+            calorie: getExerciseRecord.calorie,
+        };
+    }
+
 
 
   }

@@ -1,4 +1,4 @@
-export type ExerciseGetResponse {
+export type ExerciseGetResponse = {
   userId: string;
   timeCount: number;
   calorie: number;
@@ -7,6 +7,6 @@ export type ExerciseGetResponse {
 }
 
 export type Exercise = {
-  id: string;
+  id: number;
   name: string;
 }

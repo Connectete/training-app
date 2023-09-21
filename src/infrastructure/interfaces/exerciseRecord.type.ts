@@ -7,5 +7,5 @@ export interface ExerciseRecordRepository {
    * 運動記録をユーザIDから取得する
    * @param userId
    */
-  findByUserId(exerciseRecord: ExerciseRecord);
+  findByUserId(userId: string): Promise<ExerciseRecord | null>;
 }
