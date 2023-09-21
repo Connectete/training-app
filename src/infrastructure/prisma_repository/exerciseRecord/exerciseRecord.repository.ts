@@ -7,17 +7,18 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
   constructor(private readonly prisma: PrismaService) {}
-  async findByUserId(userId: string): Promise<ExerciseRecord | null> {
+  async findByUserId(userId: string): Promise<ExerciseRecord[] | null> {
     try {
-      return await this.prisma.exerciseRecord.findUnique({
+      return await this.prisma.exerciseRecord.findMany({
         select: {
+          id:false,
           userId: true,
           date: true,
           timeCount: true,
           exercise: { select: { name: true, id: true } },
           calorie: true
         },
-        where: { userId },
+        where: { userId: userId },
       });
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {

@@ -15,10 +15,32 @@ export class ExerciseRecordUseCase {
   /**
    * 運動記録をユーザから取得する
    * @param userId
+   * @returns //日付ごとの運動記録
    */
   async findByUserId(
     userId : ExerciseRecord['userId'],
-  ): Promise<ExerciseRecord | null> {
-    return this.exerciseRecordRepository.findByUserId(userId);
+  ): Promise<{ [date: string]: ExerciseRecord[] }> {
+    const exerciseRecords = await this.exerciseRecordRepository.findByUserId(
+      userId,
+    );
+    const exerciseRecordsByDate: { [date: string]: ExerciseRecord[] } = {};
+
+    if (exerciseRecords) {
+      for (const record of exerciseRecords) {
+        const { date } = record;
+
+        // 日付を文字列に変換
+        const dateString = date.toISOString().split('T')[0];
+
+        if (!exerciseRecordsByDate[dateString]) {
+          exerciseRecordsByDate[dateString] = [];
+        }
+
+        // 日付ごとの配列に運動記録を追加
+        exerciseRecordsByDate[dateString].push(record);
+      }
+    }
+
+    return exerciseRecordsByDate;
   }
 }
