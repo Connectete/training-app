@@ -44,17 +44,16 @@ export class DiaryController {
 
   @Post('users/:userId/dates/:date/diary/create')
   async post(
-    @Param() { userId }: PostRequest,
-    @Param() { date }: PostRequest,
-    @Body() createDiaryRequest: PostRequest,
+    @Param('userId') userId: string,
+    @Body('date') date: PostRequest['date'],
+    @Body('contents') contents: PostRequest['contents'],
   ): Promise<boolean> {
-    console.log(createDiaryRequest);
     const createDiary = {
       userId: userId,
       date: new Date(date),
-      contents: createDiaryRequest.contents,
+      contents: contents,
     };
     const result = await this.diaryUseCase.createDiary(createDiary);
     return result;
-  };
+  }
 }
