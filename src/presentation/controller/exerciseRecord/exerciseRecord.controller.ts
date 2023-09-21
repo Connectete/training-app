@@ -12,12 +12,12 @@ export class ExerciseRecordController {
     @Get('users/:userId/exerciseRecord')
     async get(
         @Param('userId') userId: string,
-    ): Promise<Array<{[key: string]: ExerciseGetResponse[]}>> {
+    ): Promise<Array<{date: string, exercise: ExerciseGetResponse[]}> > {
         const getExerciseRecord = await this.exerciseRecordUseCase.findByUserId(userId);
         if (!getExerciseRecord) {
             return null;
         }
-        const result: Array<{[key: string]: ExerciseGetResponse[]}> = [];
+        const result: Array<{date: string, exercise: ExerciseGetResponse[]}> = [];
         for (const date in getExerciseRecord) {
             const records = getExerciseRecord[date];
             const dailyRecords: ExerciseGetResponse[] = records.map((record: ExerciseRecord) => ({
@@ -26,9 +26,7 @@ export class ExerciseRecordController {
                 exercise: record.exercise,
                 calorie: record.calorie,
             }));
-            const recordObject: {[key: string]: ExerciseGetResponse[]} = {};
-            recordObject[date] = dailyRecords;
-            result.push(recordObject);
+            result.push({date: date, exercise: dailyRecords});
         }
         return result;
     }
