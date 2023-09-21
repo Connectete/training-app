@@ -17,8 +17,8 @@ export class ExerciseRecordUseCase {
    * @param userId
    */
   async findByUserId(
-    usedId : ExerciseRecord['userId'],
+    userId : ExerciseRecord['userId'],
   ): Promise<ExerciseRecord | null> {
-    return this.exerciseRecordRepository.findByUserId(usedId);
+    return this.exerciseRecordRepository.findByUserId(userId);
   }
 }
