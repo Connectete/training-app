@@ -1,7 +1,7 @@
-export type ExerciseGetResponse = {
+export type ExerciseRecord = {
   userId: string;
   date: Date;
-  time: number;
+  timeCount: number;
   exercise: string;
   calorie: number;
 };

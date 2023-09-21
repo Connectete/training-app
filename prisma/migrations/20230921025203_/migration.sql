@@ -55,10 +55,10 @@ CREATE TABLE "ExerciseRecords" (
     "user_id" TEXT NOT NULL,
     "exercise_id" INTEGER NOT NULL,
     "date" DATE NOT NULL,
-    "time" INTEGER NOT NULL,
+    "timeCount" INTEGER NOT NULL,
     "calorie" INTEGER NOT NULL DEFAULT 0,
 
-    CONSTRAINT "ExerciseRecords_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ExerciseRecords_pkey" PRIMARY KEY ("user_id")
 );
 
 -- CreateTable

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { InfrastructureModule } from '@/infrastructure/infrastructure.module';
-import { ExerciseUseCase } from './exercise.usecase';
+import { ExerciseRecordUseCase } from './exerciseRecord.usecase';
 
 @Module({
   imports: [InfrastructureModule],
-  providers: [ExerciseUseCase],
-  exports: [ExerciseUseCase],
+  providers: [ExerciseRecordUseCase],
+  exports: [ExerciseRecordUseCase],
 })
 export class ExerciseModule {}
