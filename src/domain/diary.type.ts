@@ -7,4 +7,10 @@ export type UpdateDiary = {
 export type Diary = {
   userId: string;
   date: Date;
-}
+};
+
+export type CreateDiary = {
+  userId: string;
+  date: Date;
+  contents: string;
+};
