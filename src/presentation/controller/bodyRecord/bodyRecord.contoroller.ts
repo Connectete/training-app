@@ -51,6 +51,5 @@ export class BodyRecordController {
       createBodyRecord,
     );
     return result;
-  
   }
 }
