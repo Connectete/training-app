@@ -3,7 +3,8 @@ import {
   EXERCISERECORD_REPOSITORY,
   ExerciseRecordRepository,
 } from '@/infrastructure/interfaces/exerciseRecord.type';
-import { ExerciseRecord } from '@/domain/exerciseRecord.type';
+import { ExerciseRecord, ExerciseRecordAdd } from '@/domain/exerciseRecord.type';
+
 
 @Injectable()
 export class ExerciseRecordUseCase {
@@ -13,17 +14,28 @@ export class ExerciseRecordUseCase {
   ) {}
 
   /**
-   * 運動記録をユーザから取得する
+   * 運動記録をユーザIDと日付から取得する
    * @param userId
    * @returns //日付ごとの運動記録
    */
+
+  async createExerciseRecord(exerciseRecord: ExerciseRecord): Promise<boolean> {
+    return this.exerciseRecordRepository.createExerciseRecord(exerciseRecord);
+  }
+  async findAllByUserId(
+    userId: ExerciseRecord['userId'],
+  ): Promise<ExerciseRecord | null> {
+    return this.exerciseRecordRepository.findAllByUserId(userId);
+  }
+  async updateExerciseRecord(exerciseRecord: ExerciseRecord): Promise<boolean> {
+    return this.exerciseRecordRepository.updateExerciseRecord(exerciseRecord);
+  }
   async findByUserId(
     userId : ExerciseRecord['userId'],
-  ): Promise<{ [date: string]: ExerciseRecord[] }> {
+  ): Promise<{ [date: string]: ExerciseRecordAdd[] }> {
     const exerciseRecords = await this.exerciseRecordRepository.findByUserId(
-      userId,
-    );
-    const exerciseRecordsByDate: { [date: string]: ExerciseRecord[] } = {};
+      userId,);
+    const exerciseRecordsByDate: { [date: string]: ExerciseRecordAdd[] } = {};
 
     if (exerciseRecords) {
       for (const record of exerciseRecords) {

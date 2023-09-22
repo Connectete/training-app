@@ -1,13 +1,55 @@
-import { Injectable, NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { ExerciseRecordRepository } from '@/infrastructure/interfaces/exerciseRecord.type';
-import { ExerciseRecord } from '@/domain/exerciseRecord.type';
+import { ExerciseRecord,ExerciseRecordAdd } from '@/domain/exerciseRecord.type';
+import { NotFoundException, InternalServerErrorException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+
 
 @Injectable()
 export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
   constructor(private readonly prisma: PrismaService) {}
-  async findByUserId(userId: string): Promise<ExerciseRecord[] | null> {
+  async createExerciseRecord(exerciseRecord: ExerciseRecord) {
+    return this.prisma.exerciseRecord.create({
+      data: {
+        userId: exerciseRecord.userId,
+        date: exerciseRecord.date,
+        timeCount: exerciseRecord.timeCount,
+        exerciseId: exerciseRecord.exerciseId,
+        calorie: exerciseRecord.calorie,
+      },
+    });
+  }
+  async findAllByUserId(userId: string) {
+    return this.prisma.exerciseRecord.findMany({
+      select: {
+        userId: false,
+        date: true,
+        timeCount: true,
+        exercise: true,
+        calorie: true,
+      },
+      where: {
+        userId,
+      },
+    });
+  }
+  async updateExerciseRecord(exerciseRecord: ExerciseRecord) {
+    return this.prisma.exerciseRecord.update({
+      where: {
+        userId_date_exerciseId: {
+          userId: exerciseRecord.userId,
+          date: exerciseRecord.date,
+          exerciseId: exerciseRecord.exerciseId,
+        },
+      },
+      data: {
+        timeCount: exerciseRecord.timeCount,
+        calorie: exerciseRecord.calorie,
+      },
+    });
+  }
+  async findByUserId(userId: string): Promise<ExerciseRecordAdd[] | null> {
     try {
       return await this.prisma.exerciseRecord.findMany({
         select: {

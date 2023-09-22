@@ -8,6 +8,9 @@ import { DIARY_REPOSITORY } from '../interfaces/diary.type';
 import { DiaryRepositoryImpl } from './diary/diary.repository';
 import { ExerciseRecordRepositoryImpl } from './exerciseRecord/exerciseRecord.repository';
 import { EXERCISERECORD_REPOSITORY } from '../interfaces/exerciseRecord.type';
+import { DietRepositoryImpl } from './diet/diet.repository';
+import { DIET_REPOSITORY } from '../interfaces/diet.type';
+
 @Module({
   providers: [
     PrismaService,
@@ -15,12 +18,14 @@ import { EXERCISERECORD_REPOSITORY } from '../interfaces/exerciseRecord.type';
     { provide: BODYRECORD_REPOSITORY, useClass: BodyRecordRepositoryImpl },
     { provide: DIARY_REPOSITORY, useClass: DiaryRepositoryImpl },
     { provide: EXERCISERECORD_REPOSITORY, useClass: ExerciseRecordRepositoryImpl },
+    { provide: DIET_REPOSITORY, useClass: DietRepositoryImpl}
   ],
   exports: [
     GOAL_REPOSITORY,
     BODYRECORD_REPOSITORY,
     DIARY_REPOSITORY,
     EXERCISERECORD_REPOSITORY,
+    DIET_REPOSITORY,
   ],
 })
 export class PrismaRepositoryModule {}
