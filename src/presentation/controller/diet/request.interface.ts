@@ -1,7 +1,7 @@
 import { IsNotEmpty, } from "class-validator";
 
 
-export class getDietRequest {
+export class GetDietRequest {
     @IsNotEmpty({ message: "データを取得出来ませんでした。再読み込みを行うか、管理者に連絡して下さい。" })
     userId!: string;
     @IsNotEmpty({ message: "データを取得出来ませんでした。再読み込みを行うか、管理者に連絡して下さい。" })
@@ -10,7 +10,7 @@ export class getDietRequest {
     type!: string;
 }
 
-export class updateDietRequest {
+export class UpdateDietRequest {
     @IsNotEmpty({ message: "データを取得出来ませんでした。再読み込みを行うか、管理者に連絡して下さい。" })
     photo!: string;
 }

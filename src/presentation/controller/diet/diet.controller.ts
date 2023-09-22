@@ -1,16 +1,14 @@
 import { Controller, Get, Param, Put, Body } from "@nestjs/common";
 import { DietUseCase } from "@/application/usecase/diet/diet.usecase";
 import { DietType,} from "@/domain/diet.type";
-import { getDietRequest, updateDietRequest } from "./request.interface";
-import { getDietResponse,updateDietResponse } from "./response.interface";
-import { Prisma } from "@prisma/client";
+import { GetDietRequest} from "./request.interface";
+
 
 @Controller("")
 export class DietController {
     constructor(private readonly dietUseCase: DietUseCase) {}
 
     private mapToDietType(type: string): DietType {
-        console.log('Received type:', type);
         switch (type) {
             case "MORNING":
                 return DietType.MORNING;
@@ -27,7 +25,7 @@ export class DietController {
 
     @Get("users/:userId/dates/:date/diets/:type/diet")
     async get(
-        @Param() { userId, date, type }: getDietRequest,
+        @Param() { userId, date, type }: GetDietRequest,
     ) {
         const DietType = this.mapToDietType(type);
         const getDiet = await this.dietUseCase.findByUserId({
@@ -46,7 +44,6 @@ export class DietController {
         @Body('photo') photo: string,
     ) {
         const dietType = this.mapToDietType(type);
-        console.log(dietType);
         const updateDiet = await this.dietUseCase.updateByUserId({
             userId: userId,
             date: new Date(date),
