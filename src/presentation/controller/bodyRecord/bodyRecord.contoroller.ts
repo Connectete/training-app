@@ -7,7 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { GetRequest, PostRequest } from './request.interface';
-import { GetResponse } from './respons.interface';
+import { GetResponse } from './response.interface';
 import { BodyRecordUseCase } from '@/application/usecase/bodyRecord/bodyRecord.usecases';
 import { CreateBodyRecord } from '@/domain/bodyRecord.type';
 
