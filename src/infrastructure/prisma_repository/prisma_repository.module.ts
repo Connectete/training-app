@@ -8,9 +8,9 @@ import { DIARY_REPOSITORY } from '../interfaces/diary.type';
 import { DiaryRepositoryImpl } from './diary/diary.repository';
 import { ExerciseRecordRepositoryImpl } from './exerciseRecord/exerciseRecord.repository';
 import { EXERCISERECORD_REPOSITORY } from '../interfaces/exerciseRecord.type';
-import { ExerciseRecordRepository } from '@/infrastructure/interfaces/exerciseRecord.type';
 import { DietRepositoryImpl } from './diet/diet.repository';
 import { DIET_REPOSITORY } from '../interfaces/diet.type';
+
 @Module({
   providers: [
     PrismaService,

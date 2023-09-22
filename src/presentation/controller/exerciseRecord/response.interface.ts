@@ -12,3 +12,14 @@ export type ExerciseGetAllResponse = {
   exerciseId: number;
   calorie: number;
 };
+export type ExerciseGetAllResponse2 = {
+  userId: string;
+  timeCount: number;
+  calorie: number;
+  exercise: Exercise;
+}
+
+export type Exercise = {
+  id: number;
+  name: string;
+}

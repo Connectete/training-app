@@ -6,24 +6,15 @@ import {
 import {
   ExerciseGetResponse,
   ExerciseGetAllResponse,
+  ExerciseGetAllResponse2,
 } from './response.interface';
 import { ExerciseRecordUseCase } from '@/application/usecase/exerciseRecord/exerciseRecord.usecase';
+import { ExerciseRecordGet } from '@/domain/exerciseRecord.type';
 
 @Controller('')
 export class ExerciseRecordController {
-  constructor(private readonly exerciseRecordUseCase: ExerciseRecordUseCase) {}
 
-  @Get('users/:userId/dates/:date/exerciseRecord')
-  async get(
-    @Param('userId') userId: string,
-    @Param('date') date: string,
-  ): Promise<ExerciseGetResponse> {
-    const exercise = await this.exerciseRecordUseCase.findByUserId(
-      userId,
-      new Date(date),
-    );
-    return exercise;
-  }
+  constructor(private readonly exerciseRecordUseCase: ExerciseRecordUseCase) {}
   @Post('users/:userId/dates/:date/exerciseRecord/create')
   async post(
     @Param('userId') userId: string,
@@ -64,4 +55,25 @@ export class ExerciseRecordController {
       });
     return exerciseRecord;
   }
+    @Get('users/:userId/exerciseRecord')
+    async get(
+        @Param('userId') userId: string,
+    ): Promise<Array<{date: string, exercise: ExerciseGetAllResponse2[]}> > {
+        const getExerciseRecord = await this.exerciseRecordUseCase.findByUserId(userId);
+        if (!getExerciseRecord) {
+            return null;
+        }
+        const result: Array<{date: string, exercise: ExerciseGetAllResponse2[]}> = [];
+        for (const date in getExerciseRecord) {
+            const records = getExerciseRecord[date];
+            const dailyRecords: ExerciseGetAllResponse2[] = records.map((record: ExerciseRecordGet) => ({
+                userId: record.userId,
+                timeCount: record.timeCount,
+                exercise: record.exercise,
+                calorie: record.calorie,
+            }));
+            result.push({date: date, exercise: dailyRecords});
+        }
+        return result;
+    }
 }

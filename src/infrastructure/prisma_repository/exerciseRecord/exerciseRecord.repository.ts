@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { ExerciseRecordRepository } from '@/infrastructure/interfaces/exerciseRecord.type';
-import { exerciseRecord } from '@/domain/exerciseRecord.type';
+import { ExerciseRecord,ExerciseRecordAdd } from '@/domain/exerciseRecord.type';
+import { NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+
 
 @Injectable()
 export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
   constructor(private readonly prisma: PrismaService) {}
-  async findByUserId(userId: string, date: Date) {
-    return this.prisma.exerciseRecord.findMany({
-      select: {
-        userId: true,
-        date: true,
-        timeCount: true,
-        exercise: true,
-        calorie: true,
-      },
-      where: {
-        AND: [{ userId }, { date }],
-      },
-    });
-  }
-  async createExerciseRecord(exerciseRecord: exerciseRecord) {
+  async createExerciseRecord(exerciseRecord: ExerciseRecord) {
     return this.prisma.exerciseRecord.create({
       data: {
         userId: exerciseRecord.userId,
@@ -45,7 +34,7 @@ export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
       },
     });
   }
-  async updateExerciseRecord(exerciseRecord: exerciseRecord) {
+  async updateExerciseRecord(exerciseRecord: ExerciseRecord) {
     return this.prisma.exerciseRecord.update({
       where: {
         userId_date_exerciseId: {
@@ -59,5 +48,27 @@ export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
         calorie: exerciseRecord.calorie,
       },
     });
+  }
+  async findByUserId(userId: string): Promise<ExerciseRecordAdd[] | null> {
+    try {
+      return await this.prisma.exerciseRecord.findMany({
+        select: {
+          id:false,
+          userId: true,
+          date: true,
+          timeCount: true,
+          exercise: { select: { name: true, id: true } },
+          calorie: true
+        },
+        where: { userId: userId },
+      });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException('データが存在しません');
+        }
+      }
+      throw new InternalServerErrorException('予期せぬエラーが発生しました');
+    }
   }
 }
