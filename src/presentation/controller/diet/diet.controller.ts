@@ -1,14 +1,16 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Param, Put, Body } from "@nestjs/common";
 import { DietUseCase } from "@/application/usecase/diet/diet.usecase";
-import { Diet, DietType } from "@/domain/diet.type";
-import { getDietRequest } from "./request.interface";
-import { getDietResponse } from "./response.interface";
+import { DietType,} from "@/domain/diet.type";
+import { getDietRequest, updateDietRequest } from "./request.interface";
+import { getDietResponse,updateDietResponse } from "./response.interface";
+import { Prisma } from "@prisma/client";
 
 @Controller("")
 export class DietController {
     constructor(private readonly dietUseCase: DietUseCase) {}
 
     private mapToDietType(type: string): DietType {
+        console.log('Received type:', type);
         switch (type) {
             case "MORNING":
                 return DietType.MORNING;
@@ -21,7 +23,7 @@ export class DietController {
             default:
                 throw new Error("DietTypeが不正です");
         }
-    }
+    };
 
     @Get("users/:userId/dates/:date/diets/:type/diet")
     async get(
@@ -35,5 +37,29 @@ export class DietController {
             type: DietType,
         });
         return getDiet;
+    }
+    @Put("users/:userId/dates/:date/diets/:type/diet/update")
+    async put(
+        @Param('userId') userId: string,
+        @Param('date') date: string,
+        @Param('type') type: string,
+        @Body('photo') photo: string,
+    ) {
+        const dietType = this.mapToDietType(type);
+        console.log(dietType);
+        const updateDiet = await this.dietUseCase.updateByUserId({
+            userId: userId,
+            date: new Date(date),
+            photo: photo,
+            type: dietType,
+        });
+
+        const propertiesToRemove = ['createdAt', 'updatedAt'];
+        propertiesToRemove.forEach(prop => {
+        if (updateDiet.hasOwnProperty(prop)) {
+            delete updateDiet[prop];
+        }
+    });
+        return updateDiet;
     }
 }

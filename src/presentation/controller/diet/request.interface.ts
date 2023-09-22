@@ -1,4 +1,4 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, } from "class-validator";
 
 
 export class getDietRequest {
@@ -8,4 +8,9 @@ export class getDietRequest {
     date!: Date;
     @IsNotEmpty({ message: "データを取得出来ませんでした。再読み込みを行うか、管理者に連絡して下さい。" })
     type!: string;
+}
+
+export class updateDietRequest {
+    @IsNotEmpty({ message: "データを取得出来ませんでした。再読み込みを行うか、管理者に連絡して下さい。" })
+    photo!: string;
 }

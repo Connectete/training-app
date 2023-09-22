@@ -72,15 +72,14 @@ CREATE TABLE "Diaries" (
 
 -- CreateTable
 CREATE TABLE "Diets" (
-    "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
     "photo" TEXT NOT NULL,
     "type" "DietType" NOT NULL,
-    "date_time" TIMESTAMP(3) NOT NULL,
+    "date_time" DATE NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "Diets_pkey" PRIMARY KEY ("user_id")
+    CONSTRAINT "Diets_pkey" PRIMARY KEY ("user_id","date_time","type")
 );
 
 -- CreateTable
@@ -120,9 +119,6 @@ CREATE UNIQUE INDEX "ExerciseRecords_user_id_date_exercise_id_key" ON "ExerciseR
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Diaries_user_id_date_key" ON "Diaries"("user_id", "date");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Diets_user_id_date_time_type_key" ON "Diets"("user_id", "date_time", "type");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_ColumnToColumnTag_AB_unique" ON "_ColumnToColumnTag"("A", "B");

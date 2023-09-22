@@ -11,3 +11,10 @@ export enum DietType {
     DINNER = 'DINNER',
     SNACK = 'SNACK'
 }
+
+export type UpdateDiet = {
+    userId: string;
+    date: Date;
+    photo: string;
+    type: DietType;
+}

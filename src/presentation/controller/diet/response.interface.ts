@@ -4,3 +4,10 @@ export type getDietResponse = {
     photo: string;
     type: string;
 };
+
+export type updateDietResponse = {
+    userId: string;
+    date: string;
+    photo: string;
+    type: string;
+};
