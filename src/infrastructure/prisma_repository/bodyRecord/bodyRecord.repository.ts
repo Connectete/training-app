@@ -27,11 +27,11 @@ export class BodyRecordRepositoryImpl implements BodyRecordRepository {
   }
   async createBodyRecord(createBodyRecord: createBodyRecord) {
     return this.prisma.bodyRecord.create({
-      data: { 
+      data: {
         userId: createBodyRecord.userId,
         date: createBodyRecord.date,
         value: createBodyRecord.value,
-        },
-      });  
-    }
+      },
+    });
+  }
 }
