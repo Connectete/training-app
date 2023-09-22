@@ -38,7 +38,6 @@ async function main() {
     await prisma.exercise.create({
       data: {
         name: '体操2',
-        calorie: 25,
       },
     });
     await prisma.goal.create({
@@ -61,9 +60,9 @@ async function main() {
     await prisma.exerciseRecord.create({
       data: {
         userId: userId,
-        dateTime: now,
+        date: now,
         exerciseId: 1,
-        time: 20,
+        timeCount: 20,
       },
     });
     await prisma.diary.create({

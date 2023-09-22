@@ -38,9 +38,7 @@ model Account {
 model Exercise {
   id              Int              @id @default(autoincrement())
   name            String           @unique
-  calorie         Int
   exerciseRecords ExerciseRecord[]
-
   @@map("Exercises")
 }
 
@@ -68,15 +66,16 @@ model BodyRecord {
 }
 
 model ExerciseRecord {
-  id         Int      @id @default(autoincrement())
+  id         Int      @default(autoincrement()) @id
   user       User     @relation(fields: [userId], references: [userId])
   userId     String   @map("user_id")
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
   exerciseId Int      @map("exercise_id")
-  dateTime   DateTime @map("date_time")
-  time       Int
+  date       DateTime @db.Date
+  timeCount  Int
+  calorie    Int      @default(0)
 
-  @@map("ExirciseRecords")
+  @@map("ExerciseRecords")
 }
 
 model Diary {
