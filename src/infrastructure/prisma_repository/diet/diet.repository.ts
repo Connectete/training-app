@@ -14,7 +14,7 @@ export class DietRepositoryImpl implements DietRepository {
         const result = this.prisma.diet.create({
             data: {
                 userId: createDiet.userId,
-                dateTime: createDiet.date,
+                date: createDiet.date,
                 photo: createDiet.photo,
                 type: createDiet.type,
             },
