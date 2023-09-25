@@ -7,6 +7,7 @@ import { CreateDiet, DietType } from "@/domain/diet.type";
 
 
 
+
 @Controller('')
 export class DietController {
     constructor(private readonly dietUseCase: DietUseCase) {}
