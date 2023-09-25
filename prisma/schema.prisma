@@ -76,6 +76,7 @@ model ExerciseRecord {
   calorie    Int      @default(0)
 
   @@map("ExerciseRecords")
+  @@unique([userId, exerciseId, date])
 }
 
 model Diary {
