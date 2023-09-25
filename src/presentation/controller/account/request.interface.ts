@@ -8,4 +8,8 @@ export class AccountCreateRequest {
     @IsString({ message: 'パスワードは文字列で入力してください' })
     @IsNotEmpty({ message: 'パスワードを入力してください' })
     password: string;
+
+    @IsString({ message: '名前は文字列で入力してください' })
+    @IsNotEmpty({ message: '名前を入力してください' })
+    name: string;
 }

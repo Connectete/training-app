@@ -11,10 +11,17 @@ export class AccountRepositoryImpl implements AccountRepository {
 
         const hashedPassword = await this.hashPassword(accountInfo.password);
 
+        await this.prisma.user.create({
+            data: {
+                userId: accountInfo.userId,
+                name: accountInfo.name,
+            },
+        });
+
         return this.prisma.account.create({
-        data: {
-            userId: accountInfo.userId,
-            password: hashedPassword,
+            data: {
+                userId: accountInfo.userId,
+                password: hashedPassword,
             },
         });
     }

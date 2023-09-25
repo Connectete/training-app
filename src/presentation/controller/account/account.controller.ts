@@ -9,6 +9,7 @@ export class AccountController {
     async post(@Body() createAccountRequest: AccountCreateRequest): Promise<boolean> {
         const createAccount = {
             userId: createAccountRequest.userId,
+            name: createAccountRequest.name,
             password: createAccountRequest.password,
         };
         const result = await this.accountUseCase.createAccount(createAccount);
