@@ -152,3 +152,17 @@ ALTER TABLE "_ColumnToColumnTag" ADD CONSTRAINT "_ColumnToColumnTag_A_fkey" FORE
 
 -- AddForeignKey
 ALTER TABLE "_ColumnToColumnTag" ADD CONSTRAINT "_ColumnToColumnTag_B_fkey" FOREIGN KEY ("B") REFERENCES "ColumnTags"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddExerciseMenu
+-- Seeding
+INSERT INTO "Exercises" ("腹筋");
+INSERT INTO "Exercises" ("スクワット");
+INSERT INTO "Exercises" ("腕立て伏せ");
+INSERT INTO "Exercises" ("背筋");
+INSERT INTO "Exercises" ("ランニング");
+INSERT INTO "Exercises" ("ウォーキング");
+INSERT INTO "Exercises" ("サイクリング");
+INSERT INTO "Exercises" ("ヨガ");
+INSERT INTO "Exercises" ("ストレッチ");
+INSERT INTO "Exercises" ("水泳");
+INSERT INTO "Exercises" ("ダンベル");
