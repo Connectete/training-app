@@ -13,7 +13,7 @@ export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
     return this.prisma.exerciseRecord.create({
       data: {
         userId: exerciseRecord.userId,
-        date: exerciseRecord.date,
+        date: exerciseRecord.date.toISOString(),
         timeCount: exerciseRecord.timeCount,
         exerciseId: exerciseRecord.exerciseId,
         calorie: exerciseRecord.calorie,
@@ -39,7 +39,7 @@ export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
       where: {
         userId_exerciseId_date: {
           userId: exerciseRecord.userId,
-          date: exerciseRecord.date,
+          date: exerciseRecord.date.toISOString(),
           exerciseId: exerciseRecord.exerciseId,
         },
       },
