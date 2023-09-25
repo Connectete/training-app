@@ -55,11 +55,7 @@ CREATE TABLE "ExerciseRecords" (
     "user_id" TEXT NOT NULL,
     "exercise_id" INTEGER NOT NULL,
     "date" DATE NOT NULL,
-<<<<<<<< HEAD:prisma/migrations/20230922075257_/migration.sql
-    "timeCount" INTEGER NOT NULL DEFAULT 0,
-========
     "timeCount" INTEGER NOT NULL,
->>>>>>>> 95a2badbaed5f38c7897ae1c8f2566c6addb43b6:prisma/migrations/20230921060922_/migration.sql
     "calorie" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "ExerciseRecords_pkey" PRIMARY KEY ("id")
@@ -119,7 +115,7 @@ CREATE UNIQUE INDEX "Exercises_name_key" ON "Exercises"("name");
 CREATE UNIQUE INDEX "BodyRecords_user_id_date_key" ON "BodyRecords"("user_id", "date");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ExerciseRecords_user_id_date_exercise_id_key" ON "ExerciseRecords"("user_id", "date", "exercise_id");
+CREATE UNIQUE INDEX "ExerciseRecords_user_id_exercise_id_date_key" ON "ExerciseRecords"("user_id", "exercise_id", "date");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Diaries_user_id_date_key" ON "Diaries"("user_id", "date");

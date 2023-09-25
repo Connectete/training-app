@@ -37,7 +37,7 @@ export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
   async updateExerciseRecord(exerciseRecord: ExerciseRecord) {
     return this.prisma.exerciseRecord.update({
       where: {
-        userId_date_exerciseId: {
+        userId_exerciseId_date: {
           userId: exerciseRecord.userId,
           date: exerciseRecord.date,
           exerciseId: exerciseRecord.exerciseId,
