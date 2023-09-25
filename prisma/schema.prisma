@@ -45,7 +45,6 @@ model Exercise {
 }
 
 model Goal {
-  id        Int      @default(autoincrement())
   user      User     @relation(fields: [userId], references: [userId])
   userId    String   @id @map("user_id")
   value     Float

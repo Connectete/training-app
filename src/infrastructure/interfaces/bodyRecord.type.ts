@@ -8,5 +8,5 @@ export interface BodyRecordRepository {
    * @param userId
    */
   findByUserId(userId: string);
-  registerUser(CreateBodyRecord: CreateBodyRecord);
+  createBodyRecord(CreateBodyRecord: CreateBodyRecord);
 }

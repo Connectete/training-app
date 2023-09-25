@@ -1,4 +1,4 @@
-import { Inject, Injectable, Param } from '@nestjs/common';
+import { Inject, Injectable} from '@nestjs/common';
 import {
   BODYRECORD_REPOSITORY,
   BodyRecordRepository,
@@ -20,6 +20,6 @@ export class BodyRecordUseCase {
     return this.bodyRecordRepository.findByUserId(userId);
   }
   async createByUserId(body: CreateBodyRecord): Promise<boolean> {
-    return this.bodyRecordRepository.registerUser(body);
+    return this.bodyRecordRepository.createBodyRecord(body);
   }
 }
