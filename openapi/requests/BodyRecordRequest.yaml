@@ -1,73 +1,75 @@
-title: createBodyRecordRequest
-description: bodyRecord request body
-type: object
-required:
-  - userId
-  - value
-  - date
-properties:
-  userId: 
-    type: string
-    format: userId
-  value:
-    type: number
-  date:
-    type: string
-examples:
-  - userId: random-string
-    value: 35
-    date:  title: createBodyRecordRequest
-description: bodyRecord request body
-type: object
-required:
-  - userId
-  - value
-  - date
-properties:
-  userId: 
-    type: string
-    format: userId
-  value:
-    type: number
-  date:
-    type: string
-examples:
-  - userId: random-string
-    value: 35
-    date:title: createBodyRecordRequest
-description: bodyRecord request body
-type: object
-required:
-  - userId
-  - value
-  - date
-properties:
-  userId: 
-    type: string
-    format: userId
-  value:
-    type: number
-  date:
-    type: string
-examples:
-  - userId: random-string
-    value: 35
-    date:title: createBodyRecordRequest
-description: bodyRecord request body
-type: object
-required:
-  - userId
-  - value
-  - date
-properties:
-  userId: 
-    type: string
-    format: userId
-  value:
-    type: number
-  date:
-    type: string
-examples:
-  - userId: random-string
-    value: 35
-    date: 1970-01-0100:00:00:000Z
+paths:
+  /users/{userId}/dates/{date}/bodyRecord/create:
+    post:
+      summary: createBodyRecord
+       parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - value
+              properties:
+                value:
+                  type: number
+                  description: The body record value to be created for the user.
+              example:
+                value: 35
+      responses:
+        '200':
+          description: Success
+          content: 
+            application/json:
+              schema:
+                type: object
+                required:
+                  - userId
+                  - value
+                  - date
+                properties:
+                  userId: 
+                    type: string
+                  value:
+                    type: number
+                  date:
+                    type: string
+                    format: date
+                example:
+                  userId: random-string
+                  value: 35
+                  date: "1970-01-01T00:00:00Z"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_message:
+                    type: string
+                example:
+                  error_message: "リクエストが不正です。"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_message:
+                    type: string
+                example:
+                  error_message: "サーバーエラーが起きました。"
