@@ -56,9 +56,7 @@ CREATE TABLE "ExerciseRecords" (
     "exercise_id" INTEGER NOT NULL,
     "date" DATE NOT NULL,
     "timeCount" INTEGER NOT NULL,
-    "calorie" INTEGER NOT NULL DEFAULT 0,
-
-    CONSTRAINT "ExerciseRecords_pkey" PRIMARY KEY ("id")
+    "calorie" INTEGER NOT NULL DEFAULT 0
 );
 
 -- CreateTable
