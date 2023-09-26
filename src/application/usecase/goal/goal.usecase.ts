@@ -3,7 +3,7 @@ import {
   GOAL_REPOSITORY,
   GoalRepository,
 } from '@/infrastructure/interfaces/goal.type';
-import { Goal } from '@/domain/goal.type';
+import { Goal, UpdateGoal } from '@/domain/goal.type';
 
 @Injectable()
 export class GoalUseCase {
@@ -18,5 +18,8 @@ export class GoalUseCase {
    */
   async findByUserId(userId: Goal['userId']): Promise<Goal | null> {
     return this.goalRepository.findByUserId(userId);
+  }
+  async updateGoal(UpdateGoal: UpdateGoal): Promise<boolean> {
+    return this.goalRepository.updateGoal(UpdateGoal);
   }
 }

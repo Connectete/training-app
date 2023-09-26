@@ -5,6 +5,7 @@ export type bodyRecord = {
   value: number;
 };
 
+
 export type updateBodyRecord = {
   userId: string;
   date: Date;
@@ -15,4 +16,11 @@ export type createBodyRecord = {
   userId: string;
   date: Date;
   value: number;
+};
+
+export type CreateBodyRecord = {
+
+    userId: string;
+    value: number;
+    date: Date;
 };
