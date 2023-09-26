@@ -1,0 +1,14 @@
+version: '24.0.6'
+
+services:
+  minio:
+    image: minio/minio:latest
+    ports:
+      - ${MINIO_PORT:-9000}:9000
+      - ${MINIO_CONSOLE_PORT:-9001}:9001
+    volumes:
+      - /docker/minio/containers/data:/data
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minio}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minio123}
+    command: server /export --console-address ":9001"

@@ -39,3 +39,12 @@ http://localhost:3001/
 cd openapi
 npx serve
 ```
+
+## minIO導入~起動
+ - training-app配下にmkdir でディレクトリ作成
+  - cd docker/minio/data/develop
+
+ - training-app にてDocker-compose up -d で起動
+   起動時に同時にPullされる
+
+   .envにIDとPASSWORDを記載
