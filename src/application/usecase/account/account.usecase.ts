@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ACCOUNT_REPOSITORY, AccountRepository } from '@/infrastructure/interfaces/account.type';
-import { AccountInfo } from '@/domain/account.type';
+import { AccountInfo,ChangePassword } from '@/domain/account.type';
 
 @Injectable()
 export class AccountUseCase {
@@ -16,5 +16,8 @@ export class AccountUseCase {
      */
     async createAccount(accountInfo: AccountInfo): Promise<boolean> {
         return this.accountRepository.createAccount(accountInfo);
+    }
+    async changePassword(changePassword: ChangePassword): Promise<boolean> {
+        return this.accountRepository.changePassword(changePassword);
     }
 }
