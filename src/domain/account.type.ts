@@ -3,3 +3,8 @@ export type AccountInfo = {
     name: string,
     password : string,
 }
+
+export type ChangePassword = {
+    userId : string,
+    password : string,
+}

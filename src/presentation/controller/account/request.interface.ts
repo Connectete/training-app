@@ -13,3 +13,9 @@ export class AccountCreateRequest {
     @IsNotEmpty({ message: '名前を入力してください' })
     name: string;
 }
+
+export class AccountChangePasswordRequest {
+    @IsString({ message: '新しいパスワードは文字列で入力してください' })
+    @IsNotEmpty({ message: '新しいパスワードを入力してください' })
+    password: string;
+}

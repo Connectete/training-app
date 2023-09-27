@@ -1,7 +1,7 @@
 import { PrismaService } from "../prisma.service";
 import { Injectable } from "@nestjs/common";
 import { AccountRepository } from "@/infrastructure/interfaces/account.type";
-import { AccountInfo } from "@/domain/account.type";
+import { AccountInfo, ChangePassword } from "@/domain/account.type";
 import { createHash } from "crypto";
 
 @Injectable()
@@ -20,6 +20,18 @@ export class AccountRepositoryImpl implements AccountRepository {
                         password: hashedPassword,
                     },
                 },
+            },
+        });
+    }
+    async changePassword(changePassword: ChangePassword) {
+        const hashedPassword = await this.hashPassword(changePassword.password);
+
+        return this.prisma.account.update({
+            where: {
+                userId: changePassword.userId,
+            },
+            data: {
+                password: hashedPassword,
             },
         });
     }
