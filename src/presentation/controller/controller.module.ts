@@ -5,6 +5,7 @@ import { BodyRecordController } from './bodyRecord/bodyRecord.contoroller';
 import { DiaryController } from './diary/diary.controller';
 import { ExerciseRecordController } from './exerciseRecord/exerciseRecord.controller';
 import { DietController } from './diet/diet.controller';
+import { AccountController } from './account/account.controller';
 
 @Module({
   imports: [ApplicationModule],
@@ -14,6 +15,7 @@ import { DietController } from './diet/diet.controller';
     DiaryController,
     ExerciseRecordController,
     DietController,
+    AccountController
   ],
 })
 export class ControllerModule {}
