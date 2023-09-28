@@ -37,10 +37,9 @@ export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
   async updateExerciseRecord(exerciseRecord: ExerciseRecord) {
     return this.prisma.exerciseRecord.update({
       where: {
-        userId_exerciseId_date: {
+        userId_date: {
           userId: exerciseRecord.userId,
           date: exerciseRecord.date.toISOString(),
-          exerciseId: exerciseRecord.exerciseId,
         },
       },
       data: {
@@ -53,7 +52,6 @@ export class ExerciseRecordRepositoryImpl implements ExerciseRecordRepository {
     try {
       return await this.prisma.exerciseRecord.findMany({
         select: {
-          id:false,
           userId: true,
           date: true,
           timeCount: true,
