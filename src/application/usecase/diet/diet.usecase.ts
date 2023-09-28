@@ -1,6 +1,7 @@
 import { DietRepository, DIET_REPOSITORY } from "@/infrastructure/interfaces/diet.type";
 import { Body, Inject, Injectable } from "@nestjs/common";
 import { CreateDiet } from "@/domain/diet.type";
+
 @Injectable()
 export class DietUseCase {
     constructor(

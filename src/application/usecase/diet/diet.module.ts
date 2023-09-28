@@ -1,5 +1,5 @@
 import { InfrastructureModule } from "@/infrastructure/infrastructure.module";
-import { Controller, Module } from "@nestjs/common";
+import {  Module } from "@nestjs/common";
 import { DietUseCase } from "./diet.usecase";
 
 @Module({

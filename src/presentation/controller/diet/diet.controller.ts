@@ -27,21 +27,19 @@ export class DietController {
     }
     @Post('users/:userId/diets')
     async post(
-        //@Param('userId') userId: string,
-        //@Param('date') date: string,
-        //@Param('type') type: DietType,
-       //@Body('photo') photo: PostRequest['photo']
+        @Param('userId') userId: string,
+        @Param('date') date: string,
+        @Param('type') type: DietType,
+       @Body('photo') photo: PostRequest['photo']
         ): Promise<boolean> {
-            console.log("通ったよ");
-            //  const DietType = this.mapToDietType(type);
-            //const data: CreateDiet = {
-            //  userId: userId,
-            //date: new Date(date),
-            //     photo: "aaa",
-            //     type: DietType,
-            // };
-            // const result = await this.dietUseCase.createDiet(data);
-            // return result;
-            return true;
+        const DietType = this.mapToDietType(type);
+        const data: CreateDiet = {
+        userId: userId,
+        date: new Date(date),
+        photo: "aaa",
+        type: DietType,
+             };
+             const result = await this.dietUseCase.createDiet(data);
+             return result;
         }
 }
