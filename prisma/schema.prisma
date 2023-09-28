@@ -65,17 +65,16 @@ model BodyRecord {
 }
 
 model ExerciseRecord {
-  id         Int      @default(autoincrement()) @id
   user       User     @relation(fields: [userId], references: [userId])
-  userId     String   @map("user_id")
+  userId     String   @map("user_id") @id
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
   exerciseId Int      @map("exercise_id")
   date       DateTime @db.Date
   timeCount  Int
   calorie    Int      @default(0)
 
+  @@unique(fields: [userId, date])
   @@map("ExerciseRecords")
-  @@unique([userId, exerciseId, date])
 }
 
 model Diary {
