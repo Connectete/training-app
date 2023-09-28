@@ -13,6 +13,7 @@ import { GoalUseCase } from '@/application/usecase/goal/goal.usecase';
 import { PutRequest } from '../goal/request.interface';
 import { UpdateGoal } from '@/domain/goal.type';
 import { kStringMaxLength } from 'buffer';
+
 @Controller('')
 export class GoalController {
   constructor(private readonly goalUseCase: GoalUseCase) {}

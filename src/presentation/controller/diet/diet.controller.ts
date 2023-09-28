@@ -27,8 +27,7 @@ export class DietController {
     async post(
         @Param('userId') userId: string,
         @Param('date') date: string,
-        @Param('type') type: DietType,
-       @Body('photo') photo: PostRequest['photo']
+        @Body('type') type: DietType,
         ): Promise<boolean> {
         const DietType = this.mapToDietType(type);
         const data: CreateDiet = {
