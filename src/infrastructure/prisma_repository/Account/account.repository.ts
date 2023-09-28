@@ -36,7 +36,6 @@ export class AccountRepositoryImpl implements AccountRepository {
         });
     }
     async login(loginInfo:LoginInfo): Promise<boolean> {
-        try{
         const hashedPassword = await this.hashPassword(loginInfo.password);
         const account = await this.prisma.account.findUnique({
             where: {
@@ -47,12 +46,7 @@ export class AccountRepositoryImpl implements AccountRepository {
             return account.password === hashedPassword;
         }
         return false;
-    } catch (e) {
-        console.error(e);
-        return false;
-        }
     }
-
     private async hashPassword(password: string): Promise<string> {
         return new Promise((resolve, reject) => {
             const hash = createHash('sha256');
