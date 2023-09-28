@@ -1,16 +1,14 @@
+import { Controller, Get, Param, Put, Body, Post } from "@nestjs/common";
 import { DietUseCase } from "@/application/usecase/diet/diet.usecase";
-import { Controller } from "@nestjs/common";
-import { Post, Param, Body,} from "@nestjs/common";
+import { DietType, CreateDiet} from "@/domain/diet.type";
+import { GetDietRequest} from "./request.interface";
 import { PostRequest } from "../diet/request.interface";
-import { CreateDiet, DietType } from "@/domain/diet.type";
 
 
-
-
-
-@Controller('')
+@Controller("")
 export class DietController {
     constructor(private readonly dietUseCase: DietUseCase) {}
+
     private mapToDietType(type: string): DietType {
         switch (type) {
             case "MORNING":
@@ -42,4 +40,42 @@ export class DietController {
              const result = await this.dietUseCase.createDiet(data);
              return result;
         }
+    
+
+    @Get("users/:userId/dates/:date/diets/:type/diet")
+    async get(
+        @Param() { userId, date, type }: GetDietRequest,
+    ) {
+        const DietType = this.mapToDietType(type);
+        const getDiet = await this.dietUseCase.findByUserId({
+            userId: userId,
+            date: date,
+            photo: "",
+            type: DietType,
+        });
+        return getDiet;
+    }
+    @Put("users/:userId/dates/:date/diets/:type/diet/update")
+    async put(
+        @Param('userId') userId: string,
+        @Param('date') date: string,
+        @Param('type') type: string,
+        @Body('photo') photo: string,
+    ) {
+        const dietType = this.mapToDietType(type);
+        const updateDiet = await this.dietUseCase.updateByUserId({
+            userId: userId,
+            date: new Date(date),
+            photo: photo,
+            type: dietType,
+        });
+
+        const propertiesToRemove = ['createdAt', 'updatedAt'];
+        propertiesToRemove.forEach(prop => {
+        if (updateDiet.hasOwnProperty(prop)) {
+            delete updateDiet[prop];
+        }
+    });
+        return updateDiet;
+    }
 }
