@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Put, Param } from '@nestjs/common';
 import { AccountUseCase } from '@/application/usecase/account/account.usecase';
-import { AccountCreateRequest, AccountChangePasswordRequest } from './request.interface';
+import { AccountCreateRequest, AccountChangePasswordRequest, AccountLoginRequest } from './request.interface';
 
 @Controller('')
 export class AccountController {
@@ -27,4 +27,15 @@ export class AccountController {
         const result = await this.accountUseCase.changePassword(changePassword);
         return result;
     }
+    @Post('users/login')
+    async login
+    (@Body() loginRequest: AccountLoginRequest): Promise<boolean> {
+        const loginInfo = {
+            userId: loginRequest.userId,
+            password: loginRequest.password,
+        };
+        const result = await this.accountUseCase.login(loginInfo);
+        return result;
+    }
+
 }

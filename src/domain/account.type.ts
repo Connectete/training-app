@@ -8,3 +8,8 @@ export type ChangePassword = {
     userId : string,
     password : string,
 }
+
+export type LoginInfo = {
+    userId : string,
+    password : string,
+}
