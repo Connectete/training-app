@@ -1,7 +1,7 @@
 import { PrismaService } from "../prisma.service";
 import { Injectable } from "@nestjs/common";
 import { AccountRepository } from "@/infrastructure/interfaces/account.type";
-import { AccountInfo, ChangePassword } from "@/domain/account.type";
+import { AccountInfo, ChangePassword, LoginInfo } from "@/domain/account.type";
 import { createHash } from "crypto";
 
 @Injectable()
@@ -34,6 +34,18 @@ export class AccountRepositoryImpl implements AccountRepository {
                 password: hashedPassword,
             },
         });
+    }
+    async login(loginInfo:LoginInfo): Promise<boolean> {
+        const hashedPassword = await this.hashPassword(loginInfo.password);
+        const account = await this.prisma.account.findUnique({
+            where: {
+                userId: loginInfo.userId,
+            },
+        });
+        if (account) {
+            return account.password === hashedPassword;
+        }
+        return false;
     }
     private async hashPassword(password: string): Promise<string> {
         return new Promise((resolve, reject) => {

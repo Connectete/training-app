@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Get,
-  NotFoundException,
   Param,
   Put,
   Post,
@@ -10,7 +9,6 @@ import {
 import { GetRequest, PostRequest, PutRequest } from './request.interface';
 import { GetResponse } from './response.interface';
 import { BodyRecordUseCase } from '@/application/usecase/bodyRecord/bodyRecord.usecases';
-import { CreateBodyRecord } from '@/domain/bodyRecord.type';
 
 @Controller('')
 export class BodyRecordController {
