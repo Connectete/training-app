@@ -13,7 +13,7 @@ export class GoalRepositoryImpl implements GoalRepository {
    */
   async findByUserId(userId: string) {
     return this.prisma.goal.findFirst({
-      select: { id: true, userId: true, value: true },
+      select: { userId: true, value: true },
       where: { userId },
     });
   }
