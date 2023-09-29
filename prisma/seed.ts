@@ -35,10 +35,20 @@ async function main() {
         },
       },
     });
-    await prisma.exercise.create({
-      data: {
-        name: '体操2',
-      },
+    await prisma.exercise.createMany({
+      data: [
+        { name: '腹筋' },
+        { name: 'スクワット' },
+        { name: '腕立て伏せ' },
+        { name: '背筋' },
+        { name: 'ランニング' },
+        { name: 'ウォーキング' },
+        { name: 'サイクリング' },
+        { name: 'ヨガ' },
+        { name: 'ストレッチ' },
+        { name: '水泳' },
+        { name: 'ダンベル' },
+      ],
     });
     await prisma.goal.create({
       data: {
