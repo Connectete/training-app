@@ -18,9 +18,3 @@ export type createBodyRecord = {
   value: number;
 };
 
-export type CreateBodyRecord = {
-
-    userId: string;
-    value: number;
-    date: Date;
-};
