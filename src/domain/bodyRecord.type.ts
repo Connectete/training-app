@@ -5,9 +5,15 @@ export type bodyRecord = {
   value: number;
 };
 
-export type CreateBodyRecord = {
+export type createBodyRecord = {
   userId: string;
   value: number;
   date: Date;
 };
 
+
+export type updateBodyRecord = {
+  userId: string;
+  date: Date;
+  value: number;
+};
