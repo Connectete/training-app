@@ -12,3 +12,4 @@ export type CreateGoal = {
   userId: string;
   goal: number;
 };
+
