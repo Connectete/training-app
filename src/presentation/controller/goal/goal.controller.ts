@@ -5,13 +5,12 @@ import {
   Param,
   Put,
   Body,
+  Post,
 } from '@nestjs/common';
-import { GetRequest } from './request.interface';
+import { GetRequest, PostRequest } from './request.interface';
 import { GetResponse } from './response.interface';
 import { GoalUseCase } from '@/application/usecase/goal/goal.usecase';
 import { PutRequest } from '../goal/request.interface';
-import { UpdateGoal } from '@/domain/goal.type';
-import { kStringMaxLength } from 'buffer';
 @Controller('')
 export class GoalController {
   constructor(private readonly goalUseCase: GoalUseCase) {}
@@ -34,4 +33,16 @@ export class GoalController {
     const result = await this.goalUseCase.updateGoal(data);
     return result;
   }
+  @Post('users/:userId/goal/create')
+  async post(
+    @Param('userId') userId: string,
+    @Body() PostData: PostRequest,
+    ): Promise<boolean> {
+      const data = {
+        userId: userId,
+        goal: PostData.value,
+      };
+      const result = await this.goalUseCase.createGoal(data);
+      return result;
+    }
 }
