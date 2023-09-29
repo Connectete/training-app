@@ -35,11 +35,20 @@ async function main() {
         },
       },
     });
-    await prisma.exercise.create({
-      data: {
-        name: '体操2',
-        calorie: 25,
-      },
+    await prisma.exercise.createMany({
+      data: [
+        { name: '腹筋' },
+        { name: 'スクワット' },
+        { name: '腕立て伏せ' },
+        { name: '背筋' },
+        { name: 'ランニング' },
+        { name: 'ウォーキング' },
+        { name: 'サイクリング' },
+        { name: 'ヨガ' },
+        { name: 'ストレッチ' },
+        { name: '水泳' },
+        { name: 'ダンベル' },
+      ],
     });
     await prisma.goal.create({
       data: {
@@ -61,15 +70,15 @@ async function main() {
     await prisma.exerciseRecord.create({
       data: {
         userId: userId,
-        dateTime: now,
+        date: now,
         exerciseId: 1,
-        time: 20,
+        timeCount: 20,
       },
     });
     await prisma.diary.create({
       data: {
         userId: userId,
-        dateTime: now,
+        date: now,
         contents: 'TEST DIARY',
         createdAt: now,
         updatedAt: now,

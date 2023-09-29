@@ -10,3 +10,4 @@ export type CreateBodyRecord = {
   value: number;
   date: Date;
 };
+

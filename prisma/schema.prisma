@@ -38,9 +38,7 @@ model Account {
 model Exercise {
   id              Int              @id @default(autoincrement())
   name            String           @unique
-  calorie         Int
   exerciseRecords ExerciseRecord[]
-
   @@map("Exercises")
 }
 
@@ -67,26 +65,27 @@ model BodyRecord {
 }
 
 model ExerciseRecord {
-  id         Int      @id @default(autoincrement())
   user       User     @relation(fields: [userId], references: [userId])
-  userId     String   @map("user_id")
+  userId     String   @map("user_id") @id
   exercise   Exercise @relation(fields: [exerciseId], references: [id])
   exerciseId Int      @map("exercise_id")
-  dateTime   DateTime @map("date_time")
-  time       Int
+  date       DateTime @db.Date
+  timeCount  Int
+  calorie    Int      @default(0)
 
-  @@map("ExirciseRecords")
+  @@unique(fields: [userId, date])
+  @@map("ExerciseRecords")
 }
 
 model Diary {
-  id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [userId])
   userId    String   @map("user_id")
-  dateTime  DateTime @map("date_time")
+  date      DateTime @db.Date
   contents  String   @db.Text
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
+  @@unique(fields: [userId, date])
   @@map("Diaries")
 }
 
@@ -98,15 +97,15 @@ enum DietType {
 }
 
 model Diet {
-  id        Int      @id @default(autoincrement())
   user      User     @relation(fields: [userId], references: [userId])
   userId    String   @map("user_id")
   photo     String
   type      DietType
-  dateTime  DateTime @map("date_time")
+  date      DateTime @map("date_time") @db.Date
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
 
+  @@id(fields: [userId, date, type])
   @@map("Diets")
 }
 
