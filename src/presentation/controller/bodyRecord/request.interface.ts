@@ -1,10 +1,13 @@
 import { IsNotEmpty, IsNumber } from 'class-validator';
-import { IsDate } from 'class-validator';
-import { Type } from 'class-transformer';
 
 export class GetRequest {
-  @IsNotEmpty({ message: 'ユーザIDを入力してください' })
+  @IsNotEmpty({ message: 'データを取得出来ませんでした。再読み込みを行うか、管理者に連絡して下さい。' })
   userId!: string;
+}
+
+export class PutRequest {
+  @IsNumber({}, { message: '体重を入力してください' })
+  value!: number;
 }
 
 export class PostRequest {

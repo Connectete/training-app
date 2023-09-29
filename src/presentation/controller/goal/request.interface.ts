@@ -8,3 +8,8 @@ export class PutRequest {
   @IsNumber({}, { message: '体重を入力してください' })
   value!: number;
 }
+
+export class PostRequest {
+  @IsNumber({}, { message: '体重を入力してください'})
+  value!: number;
+}
