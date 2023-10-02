@@ -45,10 +45,6 @@ export class DietRepositoryImpl implements DietRepository {
                 type: createDiet.type,
             },
         });
-        if (result == null) {
-            return false;
-          } else {
-            return true;
-          }
+        return result !== null
     };
 }
