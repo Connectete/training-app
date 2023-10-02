@@ -1,7 +1,8 @@
-import { Controller, Get, Param, Put, Body } from "@nestjs/common";
+import { Controller, Get, Param, Put, Body, Post } from "@nestjs/common";
 import { DietUseCase } from "@/application/usecase/diet/diet.usecase";
-import { DietType,} from "@/domain/diet.type";
+import { DietType, CreateDiet} from "@/domain/diet.type";
 import { GetDietRequest} from "./request.interface";
+import { PostRequest } from "../diet/request.interface";
 
 
 @Controller("")
@@ -21,7 +22,24 @@ export class DietController {
             default:
                 throw new Error("DietTypeが不正です");
         }
-    };
+    }
+    @Post('users/:userId/diets')
+    async post(
+        @Param('userId') userId: string,
+        @Param('date') date: string,
+        @Body('type') type: DietType,
+        ): Promise<boolean> {
+        const DietType = this.mapToDietType(type);
+        const data: CreateDiet = {
+        userId: userId,
+        date: new Date(date),
+        photo: "aaa",
+        type: DietType,
+             };
+             const result = await this.dietUseCase.createDiet(data);
+             return result;
+        }
+    
 
     @Get("users/:userId/dates/:date/diets/:type/diet")
     async get(

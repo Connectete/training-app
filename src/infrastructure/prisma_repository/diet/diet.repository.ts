@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { DietRepository } from '@/infrastructure/interfaces/diet.type';
-import { Diet, UpdateDiet } from '@/domain/diet.type';
+import { Diet, UpdateDiet, CreateDiet } from '@/domain/diet.type';
 
 @Injectable()
 export class DietRepositoryImpl implements DietRepository {
@@ -30,4 +30,21 @@ export class DietRepositoryImpl implements DietRepository {
             },
         });
     }
+
+
+    /**
+     * 目標体重をユーザIDから取得する
+     * @param userId
+     */
+    async createDiet(createDiet: CreateDiet) {
+        const result = this.prisma.diet.create({
+            data: {
+                userId: createDiet.userId,
+                date: createDiet.date,
+                photo: createDiet.photo,
+                type: createDiet.type,
+            },
+        });
+        return result !== null
+    };
 }

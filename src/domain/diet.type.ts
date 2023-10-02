@@ -1,8 +1,15 @@
 export type Diet = {
-    userId: string;
-    date: Date;
-    photo: string;
-    type: DietType;
+    userId: string,
+    date: Date,
+    photo: string,
+    type: DietType,
+}
+
+export type CreateDiet = {
+    userId: string,
+    date: Date,
+    photo: string,
+    type: DietType,
 }
 
 export enum DietType {
