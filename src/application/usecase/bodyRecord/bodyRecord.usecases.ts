@@ -30,3 +30,4 @@ export class BodyRecordUseCase {
     return this.bodyRecordRepository.createBodyRecord(createBodyRecord);
   }
 }
+
